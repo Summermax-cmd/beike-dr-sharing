@@ -1,0 +1,3065 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>贝壳 · 用户转化方法论分享 · 2026.06.29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600;8..60,700&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --bg-elev: #FBFAF6;
+    --bg-deep: #0F1419;
+    --ink: #0F1419;
+    --ink-soft: #3A3F47;
+    --ink-muted: #6E7079;
+    --ink-on-deep: #EDEAE2;
+    --ink-on-deep-soft: #9A9890;
+    --line: #E5E1D8;
+    --line-strong: #C9C3B5;
+    --line-on-deep: #2A2F36;
+    --accent: #7A1F2B;
+    --accent-soft: #F2E8E6;
+    --max-w: 1240px;
+    --pad-x: clamp(24px, 4vw, 64px);
+    --section-y: clamp(96px, 14vh, 160px);
+
+    --serif: "Source Serif 4", "Noto Serif SC", ui-serif, Georgia, serif;
+    --sans: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11", "tnum";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--ink); color: var(--bg); }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+  }
+
+  /* ── Top Bar ────────────────────────────────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    background: rgba(247,245,240,0.78);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .topbar.scrolled { border-bottom-color: var(--line); }
+  .topbar-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .brand .dot { color: var(--accent); margin: 0 .35em; }
+  .topnav {
+    display: flex; gap: 28px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .topnav a {
+    color: inherit; text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .topnav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  @media (max-width: 760px) { .topnav { display: none; } }
+
+  /* ── Hero ───────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: clamp(64px, 12vh, 140px) 0 clamp(80px, 14vh, 160px);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(15,20,25,0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,20,25,0.045) 1px, transparent 1px);
+    background-size: calc((100% - var(--pad-x) * 2) / 12) 80px;
+    background-position: var(--pad-x) 0;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 70%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .eyebrow .ix {
+    display: inline-block; width: 28px; height: 1px; background: var(--line-strong);
+  }
+  .eyebrow .roman {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+  .eyebrow.on-deep { color: var(--ink-on-deep-soft); }
+  .eyebrow.on-deep .ix { background: var(--ink-on-deep); }
+
+  h1.display {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(44px, 6.4vw, 88px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 28px 0 32px;
+    color: var(--ink);
+    max-width: 16ch;
+  }
+  h1.display em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .lede {
+    font-family: var(--sans);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0 0 56px;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    max-width: 900px;
+  }
+  @media (max-width: 720px) { .meta-row { grid-template-columns: repeat(2,1fr); gap: 24px; } }
+  .meta-item .k {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 8px;
+  }
+  .meta-item .v {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── Section Map ───────────────────────────── */
+  .map {
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--line);
+  }
+  .map-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 860px) { .map-head { grid-template-columns: 1fr; gap: 16px; } }
+  .map-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 12px 0 0;
+    color: var(--ink);
+  }
+  .map-head p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .toc {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 760px) { .toc { grid-template-columns: 1fr; } }
+  .toc a {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    padding: 24px 4px;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background .15s ease, padding .15s ease;
+  }
+  .toc a:hover { background: var(--bg-elev); padding-left: 12px; padding-right: 12px; }
+  .toc a + a { border-left: 1px solid var(--line); }
+  @media (max-width: 760px) { .toc a + a { border-left: none; } }
+  .toc .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-muted);
+  }
+  .toc .title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .toc .arr {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: .12em;
+  }
+
+  /* ── Chapter ───────────────────────────── */
+  section.chapter {
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--line);
+  }
+  .chapter-head {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 56px;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 860px) { .chapter-head { grid-template-columns: 1fr; gap: 20px; } }
+  .chapter-head .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: .04em;
+    color: var(--ink-muted);
+    padding-top: 14px;
+    border-top: 1px solid var(--ink);
+    align-self: start;
+  }
+  .chapter-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    margin: 0 0 20px;
+  }
+  .chapter-head h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .chapter-head .sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ── Content blocks ─────────────────────── */
+  .h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 56px 0 16px;
+  }
+  .h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .04em;
+    color: var(--ink);
+    margin: 28px 0 10px;
+  }
+  .p {
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0 0 14px;
+  }
+  .p strong { color: var(--ink); font-weight: 600; }
+  .p em { font-family: var(--serif); font-style: italic; color: var(--ink); font-weight: 500; }
+
+  /* model cards (chapter I) */
+  .models {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    margin-top: 8px;
+  }
+  @media (max-width: 760px) { .models { grid-template-columns: 1fr; } }
+  .model {
+    background: var(--bg);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 980px) { .model { grid-template-columns: 1fr 160px; } }
+  @media (max-width: 760px) { .model { grid-template-columns: 1fr; } }
+  .model .body {
+    padding: 32px 32px 28px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .model .shot {
+    background: var(--bg-elev);
+    border-left: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px 16px;
+    position: relative;
+  }
+  @media (max-width: 760px) {
+    .model .shot { border-left: none; border-top: 1px solid var(--line); padding: 20px 16px 28px; }
+  }
+  .model .shot .device {
+    width: 132px;
+    aspect-ratio: 9 / 19.5;
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(15,20,25,0.04), 0 10px 24px -12px rgba(15,20,25,0.18);
+  }
+  .model .shot .device svg { display: block; width: 100%; height: 100%; }
+  .model .shot .caption {
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+  }
+  .model .shot .caption .pname {
+    display: block; font-family: var(--serif); font-style: italic;
+    font-size: 12px; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft); margin-top: 2px; font-weight: 500;
+  }
+  .model.wide { grid-column: 1 / -1; grid-template-columns: 1fr 280px; }
+  @media (max-width: 980px) { .model.wide { grid-template-columns: 1fr 200px; } }
+  @media (max-width: 760px) { .model.wide { grid-template-columns: 1fr; } }
+  .model.wide .shot .device { width: 156px; }
+
+  .model .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+  }
+  .model .tag .n {
+    font-family: var(--serif); font-style: italic; font-size: 13px;
+    color: var(--ink-muted); letter-spacing: 0; text-transform: none;
+  }
+  .model h3 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: 22px; line-height: 1.3; letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .model .formula {
+    font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--ink-soft); line-height: 1.55;
+    padding: 10px 0 8px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .model .meta {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 4px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .model .meta dt {
+    color: var(--ink-muted);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  .model .meta dd { margin: 0; color: var(--ink-soft); }
+  .model .meta dd strong { color: var(--ink); font-weight: 600; }
+
+  /* funnel table (chapter II) */
+  .funnel {
+    border-top: 1px solid var(--ink);
+    margin-top: 8px;
+  }
+  .funnel-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 200px;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 860px) {
+    .funnel-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+    .funnel-row .h { font-size: 11px !important; color: var(--ink-muted); }
+  }
+  .funnel-row.head {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+    padding: 12px 0;
+  }
+  .funnel-row .stage {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .funnel-row .behavior, .funnel-row .task {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .funnel-row .kpi {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    line-height: 1.6;
+    font-family: var(--sans);
+  }
+
+  /* three questions (chapter II) */
+  .threeq {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 8px;
+  }
+  @media (max-width: 760px) { .threeq { grid-template-columns: 1fr; } }
+  .threeq .q {
+    background: var(--bg);
+    padding: 28px 32px 32px;
+    display: flex; flex-direction: column;
+  }
+  .threeq .q .ke-shot {
+    width: 132px;
+    aspect-ratio: 9 / 19.5;
+    margin: 28px auto 12px;
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(15,20,25,0.04), 0 12px 28px -14px rgba(15,20,25,0.22);
+  }
+  .threeq .q .ke-shot svg { display: block; width: 100%; height: 100%; }
+  .threeq .q .qn {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+  .threeq .q h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    margin: 8px 0 14px;
+    color: var(--ink);
+  }
+  .threeq .q p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .threeq .q .shot-cap {
+    text-align: center;
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin: 0;
+  }
+  .threeq .q .shot-cap .pname {
+    display: block;
+    font-family: var(--serif); font-style: italic;
+    font-size: 12px; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft); margin-top: 2px; font-weight: 500;
+  }
+
+  /* pull quote */
+  .pullquote {
+    border-left: 2px solid var(--ink);
+    padding: 4px 0 4px 28px;
+    margin: 36px 0;
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+    max-width: 50ch;
+  }
+  .pullquote em { font-style: italic; color: var(--accent); font-weight: 500; }
+
+  /* pros & cons (chapter II) */
+  .prosc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 16px;
+  }
+  @media (max-width: 760px) { .prosc { grid-template-columns: 1fr; gap: 24px; } }
+  .prosc .col {
+    padding-top: 16px;
+    border-top: 1px solid var(--ink);
+  }
+  .prosc .col .lab {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 16px;
+  }
+  .prosc .col h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 14px 0 6px;
+    color: var(--ink);
+  }
+  .prosc .col p {
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink-soft); margin: 0 0 6px;
+  }
+
+  /* middleware (chapter III · 核心) */
+  .mw {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 36px;
+    align-items: stretch;
+  }
+  @media (max-width: 980px) { .mw { grid-template-columns: 1fr; gap: 24px; } }
+  .mw .mw-text {}
+  .mw .mw-vs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .mw .mw-vs .col {
+    padding: 24px 24px 26px;
+    border-right: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    min-width: 0;
+  }
+  .mw .mw-vs .col:last-child { border-right: none; }
+  .mw .mw-vs .col .tag {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .mw .mw-vs .col.now .tag { color: var(--accent); }
+  .mw .mw-vs .col .head {
+    display: flex; align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .mw .mw-vs .col .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    flex: 0 0 40px;
+    display: flex; align-items: flex-start; justify-content: center;
+  }
+  .mw .mw-vs .col .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 65% top;
+    display: block;
+  }
+  .mw .mw-vs .col h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--ink);
+  }
+  .mw .mw-vs .col h4 .sub {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+  .mw .mw-vs .col p {
+    font-size: 14px; line-height: 1.7;
+    color: var(--ink-soft); margin: 0;
+  }
+  .mw .props { border-top: 1px solid var(--ink); margin-top: 24px; }
+  .mw .props .item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .mw .props .item .n {
+    font-family: var(--serif); font-style: italic;
+    color: var(--accent); font-size: 14px;
+    padding-top: 1px;
+  }
+  .mw .props .item .t {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .mw .props .item .d {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  /* deliverable 3-act (购房计划书交付物结构化展示) */
+  .deliver {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 36px 40px 32px;
+    display: flex; flex-direction: column;
+    height: 100%;
+  }
+  @media (max-width: 720px) { .deliver { padding: 28px 24px 24px; } }
+  .deliver .d-head {
+    padding-bottom: 22px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .deliver .d-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .deliver .d-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(24px, 2.4vw, 30px);
+    line-height: 1.25;
+    margin: 0 0 12px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .deliver .d-title em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .deliver .d-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    margin: 0;
+    padding-left: 14px;
+    border-left: 2px solid var(--line-strong);
+    max-width: 50ch;
+  }
+  .deliver .acts {
+    display: flex; flex-direction: column;
+    flex: 1;
+  }
+  .deliver .act {
+    padding: 22px 0 24px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 720px) {
+    .deliver .act { grid-template-columns: 1fr; gap: 8px; padding: 18px 0 20px; }
+  }
+  .deliver .act:last-child { border-bottom: none; padding-bottom: 6px; }
+  .deliver .act .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    padding-top: 4px;
+  }
+  @media (max-width: 720px) {
+    .deliver .act .n { font-size: 22px; padding-top: 0; }
+  }
+  .deliver .act .body h5 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 4px;
+    letter-spacing: -0.008em;
+  }
+  .deliver .act .body h5 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .deliver .act .body .answer {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-muted);
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  .deliver .act .body .items {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .deliver .act .body .items strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .deliver .d-foot {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .deliver .d-foot em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .mw .mw-shot {
+    position: sticky;
+    top: 88px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 36px 24px 32px;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .mw .mw-shot .shot-eyebrow {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-bottom: 4px; align-self: flex-start;
+  }
+  .mw .mw-shot .shot-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--ink);
+    margin: 4px 0 24px;
+    align-self: flex-start;
+    letter-spacing: -0.01em;
+  }
+  .mw .mw-shot .shot-title em { font-style: italic; color: var(--accent); }
+  .mw .mw-shot .device {
+    width: 196px;
+    aspect-ratio: 9 / 19.5;
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    border-radius: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    box-shadow: 0 1px 0 rgba(15,20,25,0.04), 0 16px 36px -16px rgba(15,20,25,0.25);
+    position: relative;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+  .mw .mw-shot .device::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  .mw .mw-shot .device svg { display: block; width: 100%; height: auto; }
+  .mw .mw-shot .device img.full {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .mw .mw-shot .device-wrap { width: 196px; }
+  .mw .mw-shot .device-wrap {
+    position: relative;
+    width: 156px;
+    border-radius: 20px;
+  }
+  .mw .mw-shot .device-wrap::after {
+    content: "";
+    position: absolute;
+    left: 1px; right: 1px; bottom: 1px;
+    height: 32px;
+    border-radius: 0 0 19px 19px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+    pointer-events: none;
+  }
+  .mw .mw-shot .scroll-hint {
+    position: absolute;
+    left: 50%; bottom: -22px;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    background: var(--bg-elev);
+    padding: 3px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .mw .mw-shot .shot-cap {
+    text-align: center;
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-top: 16px;
+  }
+  .mw .mw-shot .shot-cap .pname {
+    display: block;
+    font-family: var(--serif); font-style: italic;
+    font-size: 12px; letter-spacing: 0; text-transform: none;
+    color: var(--ink-soft); margin-top: 2px; font-weight: 500;
+  }
+
+  /* mechanisms (Chapter III 核心机制) */
+  .mech {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    margin-top: 8px;
+  }
+  @media (max-width: 1080px) { .mech { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 640px) { .mech { grid-template-columns: 1fr; } }
+  .mech .m {
+    padding: 24px 24px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    display: flex; flex-direction: column;
+  }
+  .mech .m:last-child { border-right: none; }
+  @media (max-width: 1080px) {
+    .mech .m:nth-child(2n) { border-right: none; }
+    .mech .m:nth-child(odd) { border-right: 1px solid var(--line); }
+  }
+  @media (max-width: 640px) {
+    .mech .m { border-right: none; }
+  }
+  .mech .m .m-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .mech .m h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.3;
+    margin: 0 0 12px;
+    color: var(--ink);
+    letter-spacing: -0.008em;
+  }
+  .mech .m .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--accent);
+    border-left: 2px solid var(--accent-soft);
+    padding-left: 12px;
+    margin: 0 0 12px;
+  }
+  .mech .m p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* before-after couplet (Ch II 末尾对照金句) */
+  .couplet {
+    margin: 64px 0 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    row-gap: 28px;
+  }
+  @media (max-width: 720px) {
+    .couplet { grid-template-columns: 1fr; gap: 6px; row-gap: 20px; }
+  }
+  .couplet .when {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: .04em;
+    color: var(--ink-muted);
+    padding-top: 12px;
+  }
+  .couplet .line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+  }
+  .couplet .when.now {
+    color: var(--accent);
+  }
+  .couplet .line em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* OSA hero (服务模式升级 · 五人组架构) */
+  .osa-hero {
+    margin-top: 8px;
+    padding: 40px 44px 36px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .osa-hero { padding: 28px 24px; } }
+  .osa-hero .hero-intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .osa-hero .hero-intro .role {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .osa-hero .hero-intro h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.3;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+  }
+  .osa-hero .hero-intro h4 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .osa-cast {
+    display: grid;
+    grid-template-columns: 1.4fr 1px 4fr;
+    gap: 36px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .osa-cast { grid-template-columns: 1fr; gap: 24px; }
+    .osa-cast .divider { display: none; }
+  }
+  .osa-cast .divider {
+    width: 1px;
+    height: 140px;
+    background: var(--line);
+    justify-self: center;
+  }
+  .osa-cast .anchor {
+    text-align: center;
+  }
+  .osa-cast .anchor .av {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 14px;
+    background: #fff;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 1px var(--line-strong), 0 18px 40px -18px rgba(15,20,25,0.28);
+  }
+  @media (max-width: 860px) { .osa-cast .anchor .av { width: 130px; height: 130px; } }
+  .osa-cast .anchor .av img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 65% top;
+    display: block;
+  }
+  .osa-cast .anchor .name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .osa-cast .anchor .tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .osa-cast .anchor .desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .osa-cast .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 720px) { .osa-cast .specs { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  .osa-cast .spec {
+    text-align: center;
+  }
+  .osa-cast .spec .av {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--line), 0 10px 22px -12px rgba(15,20,25,0.22);
+  }
+  @media (max-width: 720px) { .osa-cast .spec .av { width: 84px; height: 84px; } }
+  .osa-cast .spec .av img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 0% top;
+    display: block;
+  }
+  .osa-cast .spec .name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .osa-cast .specs-label {
+    grid-column: 1 / -1;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 700;
+    margin-bottom: -4px;
+    text-align: left;
+  }
+  .osa-meta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) { .osa-meta { grid-template-columns: 1fr; gap: 18px; } }
+  .osa-meta .col .lab {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .osa-meta .col p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .osa-meta .col p em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .osa-meta .col p strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* OSA capability list (全周期能力 · 文字版) */
+  .cap-strip {
+    margin-top: 24px;
+    padding: 24px 28px;
+    background: var(--bg-elev);
+    border-left: 2px solid var(--accent);
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .cap-strip { grid-template-columns: 1fr; gap: 14px; padding: 22px 24px; }
+  }
+  .cap-strip .cap-h {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    line-height: 1.5;
+  }
+  .cap-strip .cap-h .sub {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .cap-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+  .cap-list .cap {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15.5px;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    border-radius: 999px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+
+  /* service two-tier (OSA + 专家团) */
+  .service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  @media (max-width: 860px) { .service { grid-template-columns: 1fr; gap: 20px; } }
+  .service .tier {
+    border-top: 2px solid var(--ink);
+    padding: 22px 26px 28px;
+    background: var(--bg-elev);
+    display: flex; flex-direction: column;
+  }
+  .service .tier .role {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .service .tier h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .service .tier .meta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-muted);
+    margin: 0 0 14px;
+  }
+  .service .tier .body {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .service .tier .body em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .service .tier .scope {
+    margin-top: auto;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .service .tier .scope .lab {
+    font-family: var(--sans);
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .service .tier .scope .d {
+    color: var(--ink);
+  }
+  .service .tier .scope .d em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* matching pipeline (按需分配经纪人) */
+  .match {
+    margin-top: 8px;
+    border-top: 2px solid var(--ink);
+    padding-top: 22px;
+  }
+  .match .pipe {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  @media (max-width: 860px) {
+    .match .pipe { grid-template-columns: 1fr; gap: 12px; }
+    .match .pipe .arr { display: none; }
+  }
+  .match .node {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .match .node .step {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .match .node .name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .match .node .d {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .match .arr {
+    align-self: center;
+    padding: 0 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink-muted);
+  }
+  .match .deliv {
+    margin-top: 18px;
+    padding: 18px 22px;
+    background: var(--accent-soft);
+    border-left: 2px solid var(--accent);
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .match .deliv .lab {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .match .deliv em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* dual-track 准客生产 (Chapter III B+C) */
+  .dt {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  @media (max-width: 860px) { .dt { grid-template-columns: 1fr; gap: 20px; } }
+  .dt .track {
+    border-top: 2px solid var(--ink);
+    padding: 22px 26px 28px;
+    display: flex; flex-direction: column;
+    background: var(--bg-elev);
+  }
+  .dt .track .t-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 12px;
+  }
+  .dt .track .t-head .tag {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+  }
+  .dt .track .t-head h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .dt .track .t-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+  .dt .track .t-sub em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  /* AI 增益条 */
+  .dt .track .ai-row {
+    margin-top: 8px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .dt .track .ai-row .ai-lab {
+    font-family: var(--sans);
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .dt .track .ai-row .ai-d {
+    color: var(--ink);
+  }
+  .dt .track .ai-row .ai-d em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+  }
+  .dt .track .t-sub em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+  }
+  /* B 端:4 个节点横向 */
+  .dt .track .nodes-b {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .dt .track .nodes-b .node {
+    padding: 14px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+  }
+  .dt .track .nodes-b .node .n-name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .dt .track .nodes-b .node .n-d {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  /* C 端:4 组场景 */
+  .dt .track .groups-c {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .dt .track .groups-c .grp {
+    padding: 14px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+  }
+  .dt .track .groups-c .grp .g-name {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .dt .track .groups-c .grp .g-list {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* common-action box */
+  .common-act {
+    margin-top: 18px;
+    padding: 18px 22px;
+    background: var(--accent-soft);
+    border-left: 2px solid var(--accent);
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .common-act .lab {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .common-act em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* journey 3-phase (Chapter III 客户旅程) */
+  .journey {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    margin-top: 8px;
+  }
+  @media (max-width: 860px) { .journey { grid-template-columns: 1fr; } }
+  .journey .step {
+    padding: 28px 28px 32px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    background: var(--bg);
+    position: relative;
+  }
+  .journey .step:last-child { border-right: none; }
+  @media (max-width: 860px) {
+    .journey .step { border-right: none; }
+  }
+  .journey .step .ph {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .journey .step .q {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 4px 0 10px;
+  }
+  .journey .step h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .04em;
+    color: var(--ink);
+    margin: 14px 0 6px;
+  }
+  .journey .step .desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+  .journey .step .osa {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .journey .step .osa .tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    margin-right: 8px;
+  }
+  .journey .step .who {
+    position: absolute;
+    top: 28px; right: 28px;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  /* loop diagnose 3-fail (Chapter III 经纪人闭环反馈) */
+  .diag {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 8px;
+  }
+  @media (max-width: 720px) { .diag { grid-template-columns: 1fr; } }
+  .diag .fail {
+    background: var(--bg-elev);
+    padding: 24px 24px 26px;
+    display: flex; flex-direction: column;
+  }
+  .diag .fail .signal {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .diag .fail .arrow {
+    margin: 10px 0 8px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .diag .fail .cause {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent);
+    line-height: 1.5;
+  }
+  .diag .fail .desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-top: 8px;
+  }
+
+  /* phases (两阶段交付) */
+  .phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  @media (max-width: 720px) { .phases { grid-template-columns: 1fr; } }
+  .phases .phase {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 22px 24px 24px;
+    display: flex; flex-direction: column;
+  }
+  .phases .phase.active {
+    background: #FAFAF6;
+    border-color: var(--ink);
+  }
+  .phases .phase-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .phases .phase.active .phase-num { color: var(--accent); }
+  .phases .phase-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 6px 0 4px;
+  }
+  .phases .phase-status {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .phases .phase.active .phase-status { color: var(--ink); }
+  .phases .phase-desc {
+    font-size: 14px; line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .phases .phase-desc em { font-family: var(--serif); font-style: italic; color: var(--ink); }
+  .phases .phase-fields {
+    list-style: none; padding: 0;
+    margin: 12px 0 0;
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+  }
+  .phases .phase-fields li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    padding: 6px 0;
+  }
+  .phases .phase-fields .key {
+    display: inline-block;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* modules (8 个模块) */
+  .modules {
+    border-top: 1px solid var(--ink);
+    margin-top: 8px;
+  }
+  .modules .mod {
+    display: grid;
+    grid-template-columns: 56px 1fr 1.6fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  @media (max-width: 720px) {
+    .modules .mod { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+  }
+  .modules .mod-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .modules .mod-q {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .modules .mod-d {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .modules .mod-d em { font-family: var(--serif); font-style: italic; color: var(--ink); }
+
+  /* case (chapter III) */
+  .case {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .case { grid-template-columns: 1fr; gap: 1px; } }
+  .case .pane { background: var(--bg); padding: 32px 36px; }
+  .case .pane.dark { background: var(--bg-deep); color: var(--ink-on-deep); }
+  .case .pane .lab {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 16px;
+  }
+  .case .pane.dark .lab { color: var(--ink-on-deep-soft); }
+  .case .pane h4 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: 20px; line-height: 1.35; margin: 0 0 14px;
+  }
+  .case .pane.dark h4 { color: var(--ink-on-deep); }
+  .case .pane p, .case .pane li {
+    font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 8px;
+  }
+  .case .pane.dark p, .case .pane.dark li { color: var(--ink-on-deep); opacity: .9; }
+  .case .pane ul { padding-left: 18px; margin: 8px 0 0; }
+  .case .pane.dark ul li::marker { color: var(--accent); }
+
+  /* mapping table */
+  .map-table {
+    margin-top: 8px;
+    border-top: 1px solid var(--ink);
+  }
+  .map-table .row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  @media (max-width: 720px) {
+    .map-table .row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  }
+  .map-table .row.head {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; padding: 10px 0;
+  }
+  .map-table .row .l {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .map-table .row .r {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* shifts (chapter IV) */
+  .shifts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    margin-top: 8px;
+  }
+  .shift {
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .shift { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
+  }
+  .shift .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .shift h4 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .shift .arrow {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .shift .from, .shift .to {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .shift .from .tag, .shift .to .tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .shift .to .tag { color: var(--accent); }
+
+  /* dual-layer KPI table (战略原版) */
+  .kpi-dual {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 860px) { .kpi-dual { grid-template-columns: 1fr; gap: 24px; } }
+  .kpi-dual .layer {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+  .kpi-dual .layer .layer-h {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .kpi-dual .layer .layer-h em {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+  .kpi-dual .layer .layer-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+    line-height: 1.6;
+  }
+  .kpi-dual .layer ul {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .kpi-dual .layer li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .kpi-dual .layer li .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .kpi-dual .layer li .name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .kpi-dual .layer li .hint {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    margin-left: 6px;
+  }
+
+  /* kpi compare */
+  .kpi-table {
+    margin-top: 8px;
+    border-top: 1px solid var(--ink);
+  }
+  .kpi-table .row {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { .kpi-table .row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; } }
+  .kpi-table .row.head {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; padding: 12px 0;
+  }
+  .kpi-table .l, .kpi-table .r {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .kpi-table .l { color: var(--ink-soft); }
+  .kpi-table .r { color: var(--ink); }
+  .kpi-table .row.head .l, .kpi-table .row.head .r {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+  }
+  .kpi-table .row.head .l { color: var(--ink-muted); }
+  .kpi-table .row.head .r { color: var(--accent); }
+  .kpi-table .sep {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 15px;
+    text-align: center;
+  }
+  @media (max-width: 720px) { .kpi-table .sep { display: none; } }
+
+  /* manifesto (chapter V) */
+  .manifesto {
+    background: var(--bg-deep);
+    color: var(--ink-on-deep);
+    padding: clamp(80px, 12vh, 140px) 0;
+    border-radius: 4px;
+    margin: 8px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: calc(100% / 12) 100%;
+    pointer-events: none;
+  }
+  .manifesto .inner {
+    position: relative;
+    padding: 0 clamp(28px, 5vw, 64px);
+  }
+  .manifesto .eyebrow { margin-bottom: 28px; }
+  .manifesto h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    color: var(--ink-on-deep);
+    margin: 0;
+    max-width: 32ch;
+  }
+  .manifesto h3 em { font-style: italic; color: #E8A88E; font-weight: 500; }
+
+  /* final compare (chapter V) */
+  .final-table {
+    border-top: 2px solid var(--ink);
+    margin-top: 8px;
+  }
+  .final-table .row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  @media (max-width: 860px) {
+    .final-table .row { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+  }
+  .final-table .row.head {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    font-weight: 600; padding: 14px 0;
+  }
+  .final-table .row.head .a, .final-table .row.head .b { color: var(--ink-muted); }
+  .final-table .row.head .a { }
+  .final-table .row.head .b { color: var(--accent); }
+  .final-table .row .dim {
+    font-family: var(--sans);
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+  }
+  .final-table .row .a, .final-table .row .b {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    line-height: 1.55;
+  }
+  .final-table .row .a { color: var(--ink-soft); }
+  .final-table .row .b { color: var(--ink); font-weight: 500; }
+
+  .closing {
+    margin-top: 64px;
+    padding: 56px 0 8px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+  }
+  .closing .label {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 32px;
+  }
+  .closing .stanza {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  @media (max-width: 720px) {
+    .closing .stanza { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+  }
+  .closing .stanza .when {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: .04em;
+    color: var(--ink-muted);
+    padding-top: 6px;
+  }
+  .closing .stanza p {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.012em;
+  }
+  .closing .stanza p em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .closing .punchline {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 40px 0 0;
+    letter-spacing: -0.012em;
+  }
+  .closing .punchline em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── Footer ─────────────────────────────── */
+  footer {
+    padding: 64px 0 80px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-muted);
+    font-size: 13px;
+  }
+  footer .f-inner {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 24px; flex-wrap: wrap;
+  }
+  footer .brand-f {
+    font-family: var(--serif);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* ── Reveal on scroll ───────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Top Bar ──────────────────────────────── -->
+<header class="topbar" id="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">贝壳 <span class="dot">·</span> 用户转化方法论分享</div>
+    <nav class="topnav">
+      <a href="#ch-1">模型</a>
+      <a href="#ch-2">旧范式</a>
+      <a href="#ch-3">新范式</a>
+      <a href="#ch-4">范式跃迁</a>
+      <a href="#ch-5">总结</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ─────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="eyebrow reveal">
+      <span class="ix"></span>
+      <span>A Methodology Paper</span>
+      <span class="roman">— 2026.06.29</span>
+    </div>
+
+    <h1 class="display reveal">
+      从信息服务,<br>
+      到 <em>判断力服务</em>。
+    </h1>
+
+    <p class="lede reveal">
+      过去十年,贝壳通过真实房源与服务标准化,
+      解决了"找到房"的问题。<br>
+      下一程,贝壳要回答的是一个更难的问题 ——
+      如何把信息,转化为用户可信任的决策。
+    </p>
+
+    <div class="meta-row reveal">
+      <div class="meta-item"><div class="k">Format</div><div class="v">Product Methodology</div></div>
+      <div class="meta-item"><div class="k">Audience</div><div class="v">DR Leadership</div></div>
+      <div class="meta-item"><div class="k">Chapters</div><div class="v">Five Sections</div></div>
+      <div class="meta-item"><div class="k">Duration</div><div class="v">≈ 10 min</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section Map ──────────────────────────── -->
+<section class="map">
+  <div class="container">
+    <div class="map-head">
+      <div class="eyebrow reveal"><span class="ix"></span><span>Contents</span></div>
+      <div>
+        <h2 class="reveal">本次分享将沿着五个章节展开,<br>从模型回顾,到贝壳两代转化范式的对比,再到方法论的最终收束。</h2>
+      </div>
+    </div>
+
+    <nav class="toc reveal">
+      <a href="#ch-1">
+        <span class="num">I.</span>
+        <span class="title">五种常见的互联网转化模型 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">AIDA · AISAS · AARRR · AIPL · CDJ</span></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#ch-2">
+        <span class="num">II.</span>
+        <span class="title">信息服务时代的贝壳 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">房源货架 + 经纪人承接</span></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#ch-3">
+        <span class="num">III.</span>
+        <span class="title">判断力服务时代的贝壳 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">从找到房,到做判断</span></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#ch-4">
+        <span class="num">IV.</span>
+        <span class="title">关键变化 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">四个维度的范式跃迁</span></span>
+        <span class="arr">→</span>
+      </a>
+      <a href="#ch-5">
+        <span class="num">V.</span>
+        <span class="title">最终表达 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">一句话方法论</span></span>
+        <span class="arr">→</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<!-- ── Chapter I ──────────────────────────── -->
+<section class="chapter" id="ch-1">
+  <div class="container">
+    <div class="chapter-head">
+      <div class="num reveal">CHAPTER I  ·  01 / 05</div>
+      <div>
+        <h2 class="reveal">五种常见的<br>互联网转化模型</h2>
+        <p class="sub reveal">在进入贝壳的讨论之前,先快速回顾互联网行业最常被引用的五个转化模型,以及它们各自最适合的场景。</p>
+      </div>
+    </div>
+
+    <div class="models reveal">
+      <!-- AIDA · 抖音 -->
+      <div class="model">
+        <div class="body">
+          <div class="tag"><span>AIDA</span><span class="n">— 经典营销</span></div>
+          <h3>从看到,到行动</h3>
+          <div class="formula">Attention · Interest · Desire · Action</div>
+          <dl class="meta">
+            <dt>核心</dt><dd>先让用户看到,再激发兴趣与欲望,最终促成行动。</dd>
+            <dt>场景</dt><dd>广告投放、品牌营销、<strong>低决策成本商品</strong>。</dd>
+            <dt>例子</dt><dd>短视频信息流广告 → 被卖点吸引 → 产生购买欲望 → 点击购买。</dd>
+          </dl>
+        </div>
+        <div class="shot">
+          <div class="device" aria-label="抖音 信息流广告">
+            <svg viewBox="0 0 132 286" xmlns="http://www.w3.org/2000/svg">
+              <!-- 全屏视频背景 -->
+              <defs>
+                <linearGradient id="dy-bg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#1a1a1a"/>
+                  <stop offset="1" stop-color="#000"/>
+                </linearGradient>
+              </defs>
+              <rect width="132" height="286" fill="url(#dy-bg)"/>
+              <!-- 状态栏 -->
+              <text x="10" y="14" fill="#fff" font-size="7" font-family="system-ui">9:41</text>
+              <circle cx="118" cy="11" r="2.2" fill="#fff"/>
+              <!-- 顶部 tab -->
+              <text x="22" y="32" fill="#888" font-size="7" font-family="system-ui">关注</text>
+              <text x="50" y="32" fill="#fff" font-size="7.5" font-weight="700" font-family="system-ui">推荐</text>
+              <line x1="50" y1="37" x2="64" y2="37" stroke="#fff" stroke-width="1.4"/>
+              <text x="74" y="32" fill="#888" font-size="7" font-family="system-ui">同城</text>
+              <!-- 视频内容(产品) -->
+              <rect x="28" y="80" width="76" height="60" rx="6" fill="#3a2a20"/>
+              <circle cx="66" cy="110" r="14" fill="#FE2C55" opacity=".85"/>
+              <polygon points="62,103 62,117 73,110" fill="#fff"/>
+              <text x="20" y="160" fill="#fff" font-size="6" font-weight="700" font-family="system-ui">@品牌官方旗舰店</text>
+              <text x="10" y="172" fill="#fff" font-size="5.5" font-family="system-ui">限时直降 · 3 折秒杀</text>
+              <text x="10" y="182" fill="#ddd" font-size="5" font-family="system-ui">#抖音618 #种草</text>
+              <!-- CTA 黄色购物条 -->
+              <rect x="8" y="200" width="116" height="22" rx="11" fill="#FFE352"/>
+              <circle cx="22" cy="211" r="6.5" fill="#000"/>
+              <text x="32" y="208" fill="#000" font-size="6.5" font-weight="700" font-family="system-ui">同款立即抢购</text>
+              <text x="32" y="217" fill="#000" font-size="5" font-family="system-ui">¥ 39  券后到手 19</text>
+              <text x="105" y="213" fill="#000" font-size="6" font-weight="700" font-family="system-ui">→</text>
+              <!-- 右侧操作栏 -->
+              <circle cx="118" cy="100" r="6" fill="none" stroke="#fff" stroke-width="1.2"/>
+              <text x="118" y="102" fill="#fff" font-size="5" text-anchor="middle" font-family="system-ui">♥</text>
+              <text x="118" y="116" fill="#fff" font-size="4.5" text-anchor="middle" font-family="system-ui">1.2w</text>
+              <circle cx="118" cy="128" r="6" fill="none" stroke="#fff" stroke-width="1.2"/>
+              <text x="118" y="130" fill="#fff" font-size="4.5" text-anchor="middle" font-family="system-ui">💬</text>
+              <text x="118" y="144" fill="#fff" font-size="4.5" text-anchor="middle" font-family="system-ui">832</text>
+              <!-- 底部 tab -->
+              <rect x="0" y="252" width="132" height="34" fill="#000"/>
+              <text x="14" y="270" fill="#fff" font-size="6" font-weight="700" font-family="system-ui">首页</text>
+              <text x="40" y="270" fill="#888" font-size="6" font-family="system-ui">商城</text>
+              <rect x="58" y="258" width="16" height="14" rx="3" fill="#FE2C55"/>
+              <rect x="61" y="262" width="10" height="2" fill="#25F4EE"/>
+              <text x="86" y="270" fill="#888" font-size="6" font-family="system-ui">消息</text>
+              <text x="110" y="270" fill="#888" font-size="6" font-family="system-ui">我</text>
+            </svg>
+          </div>
+          <div class="caption">Example<span class="pname">抖音 · 信息流广告</span></div>
+        </div>
+      </div>
+
+      <!-- AISAS · 小红书 -->
+      <div class="model">
+        <div class="body">
+          <div class="tag"><span>AISAS</span><span class="n">— 搜索时代</span></div>
+          <h3>从兴趣,到分享</h3>
+          <div class="formula">Attention · Interest · Search · Action · Share</div>
+          <dl class="meta">
+            <dt>核心</dt><dd>用户会主动搜索,也会在消费后分享 —— 两个互联网特征。</dd>
+            <dt>场景</dt><dd>电商、旅游、本地生活、教育、消费品牌。</dd>
+            <dt>例子</dt><dd>被笔记种草 → 搜索攻略与评价 → 下单 → 发笔记分享。</dd>
+          </dl>
+        </div>
+        <div class="shot">
+          <div class="device" aria-label="小红书 搜索结果页">
+            <svg viewBox="0 0 132 286" xmlns="http://www.w3.org/2000/svg">
+              <rect width="132" height="286" fill="#fff"/>
+              <text x="10" y="14" fill="#222" font-size="7" font-family="system-ui">9:41</text>
+              <!-- 搜索栏 -->
+              <rect x="8" y="22" width="116" height="20" rx="10" fill="#F4F4F4"/>
+              <text x="16" y="35" fill="#888" font-size="5.5" font-family="system-ui">🔍</text>
+              <text x="26" y="36" fill="#222" font-size="6.5" font-weight="600" font-family="system-ui">三亚 亲子 攻略</text>
+              <text x="108" y="36" fill="#FF2442" font-size="6.5" font-weight="700" font-family="system-ui">搜索</text>
+              <!-- tab -->
+              <text x="12" y="58" fill="#FF2442" font-size="6.5" font-weight="700" font-family="system-ui">综合</text>
+              <line x1="12" y1="63" x2="28" y2="63" stroke="#FF2442" stroke-width="1.4"/>
+              <text x="42" y="58" fill="#666" font-size="6.5" font-family="system-ui">视频</text>
+              <text x="68" y="58" fill="#666" font-size="6.5" font-family="system-ui">商品</text>
+              <text x="96" y="58" fill="#666" font-size="6.5" font-family="system-ui">用户</text>
+              <!-- 笔记瀑布流 -->
+              <rect x="6" y="70" width="58" height="78" rx="6" fill="#FFE9DA"/>
+              <circle cx="35" cy="98" r="14" fill="#FFB37A"/>
+              <rect x="6" y="148" width="58" height="6" fill="none"/>
+              <text x="10" y="156" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">三亚 5 天 4 晚</text>
+              <text x="10" y="164" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">遛娃保姆级攻略</text>
+              <circle cx="12" cy="173" r="3" fill="#ccc"/>
+              <text x="18" y="175" fill="#888" font-size="4.5" font-family="system-ui">@旅行小马</text>
+              <text x="50" y="175" fill="#FF2442" font-size="4.5" font-family="system-ui">♥ 3.2w</text>
+
+              <rect x="68" y="70" width="58" height="62" rx="6" fill="#D6EEFF"/>
+              <rect x="78" y="86" width="38" height="28" rx="3" fill="#86C5F3"/>
+              <text x="72" y="142" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">三亚酒店避雷</text>
+              <text x="72" y="150" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">这 5 家闭眼冲</text>
+              <circle cx="74" cy="159" r="3" fill="#ccc"/>
+              <text x="80" y="161" fill="#888" font-size="4.5" font-family="system-ui">@小红薯</text>
+              <text x="108" y="161" fill="#FF2442" font-size="4.5" font-family="system-ui">♥ 8k</text>
+
+              <rect x="6" y="186" width="58" height="60" rx="6" fill="#FFF1E0"/>
+              <text x="10" y="254" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">蜈支洲岛攻略</text>
+              <text x="10" y="262" fill="#888" font-size="4.5" font-family="system-ui">♥ 1.5w</text>
+
+              <rect x="68" y="136" width="58" height="74" rx="6" fill="#E8F5E8"/>
+              <text x="72" y="218" fill="#222" font-size="5.5" font-weight="600" font-family="system-ui">三亚必吃清单</text>
+              <text x="72" y="226" fill="#888" font-size="4.5" font-family="system-ui">♥ 5.6k</text>
+              <!-- 底部 -->
+              <rect x="0" y="262" width="132" height="24" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+              <circle cx="64" cy="274" r="6.5" fill="#FF2442"/>
+              <text x="64" y="277" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui">+</text>
+            </svg>
+          </div>
+          <div class="caption">Example<span class="pname">小红书 · 搜索结果</span></div>
+        </div>
+      </div>
+
+      <!-- AARRR · Duolingo -->
+      <div class="model">
+        <div class="body">
+          <div class="tag"><span>AARRR</span><span class="n">— 增长漏斗</span></div>
+          <h3>从获取,到推荐</h3>
+          <div class="formula">Acquisition · Activation · Retention · Revenue · Referral</div>
+          <dl class="meta">
+            <dt>核心</dt><dd>关注用户从哪里来、是否被激活、能否留住、能否变现、能否带新。</dd>
+            <dt>场景</dt><dd>App、SaaS、社区、工具产品。</dd>
+            <dt>例子</dt><dd>下载 App → 完成首课激活 → 连续打卡留存 → 订阅 Super → 邀好友。</dd>
+          </dl>
+        </div>
+        <div class="shot">
+          <div class="device" aria-label="Duolingo 学习首页">
+            <svg viewBox="0 0 132 286" xmlns="http://www.w3.org/2000/svg">
+              <rect width="132" height="286" fill="#fff"/>
+              <text x="10" y="14" fill="#222" font-size="7" font-family="system-ui">9:41</text>
+              <!-- 顶部状态栏 -->
+              <rect x="8" y="22" width="116" height="24" rx="6" fill="#fff" stroke="#eee"/>
+              <text x="14" y="38" fill="#FF4B4B" font-size="9" font-weight="700" font-family="system-ui">🔥</text>
+              <text x="25" y="38" fill="#222" font-size="8" font-weight="700" font-family="system-ui">42</text>
+              <text x="42" y="38" fill="#1CB0F6" font-size="9" font-weight="700" font-family="system-ui">💎</text>
+              <text x="53" y="38" fill="#222" font-size="8" font-weight="700" font-family="system-ui">685</text>
+              <text x="75" y="38" fill="#FF9600" font-size="9" font-weight="700" font-family="system-ui">❤</text>
+              <text x="86" y="38" fill="#222" font-size="8" font-weight="700" font-family="system-ui">5</text>
+              <!-- 单元标题 -->
+              <rect x="8" y="54" width="116" height="22" rx="6" fill="#58CC02"/>
+              <text x="64" y="68" fill="#fff" font-size="7" font-weight="700" text-anchor="middle" font-family="system-ui">UNIT 3 · 旅行</text>
+              <!-- 课程路径(蛇形) -->
+              <circle cx="66" cy="92" r="10" fill="#58CC02" stroke="#46a302" stroke-width="2"/>
+              <text x="66" y="95" fill="#fff" font-size="8" font-weight="700" text-anchor="middle" font-family="system-ui">★</text>
+              <circle cx="48" cy="116" r="10" fill="#58CC02" stroke="#46a302" stroke-width="2"/>
+              <text x="48" y="119" fill="#fff" font-size="8" font-weight="700" text-anchor="middle" font-family="system-ui">★</text>
+              <circle cx="36" cy="142" r="11" fill="#FFC800" stroke="#e0a900" stroke-width="2"/>
+              <text x="36" y="146" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui">▶</text>
+              <text x="36" y="162" fill="#FFC800" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">开始</text>
+              <circle cx="54" cy="172" r="10" fill="#E5E5E5"/>
+              <text x="54" y="175" fill="#aaa" font-size="8" font-weight="700" text-anchor="middle" font-family="system-ui">🔒</text>
+              <circle cx="76" cy="194" r="10" fill="#E5E5E5"/>
+              <text x="76" y="197" fill="#aaa" font-size="8" font-weight="700" text-anchor="middle" font-family="system-ui">🔒</text>
+              <circle cx="92" cy="220" r="10" fill="#E5E5E5"/>
+              <!-- Duo 角色 -->
+              <ellipse cx="98" cy="142" rx="12" ry="14" fill="#58CC02"/>
+              <circle cx="94" cy="138" r="2" fill="#fff"/>
+              <circle cx="102" cy="138" r="2" fill="#fff"/>
+              <circle cx="94" cy="138" r="1" fill="#000"/>
+              <circle cx="102" cy="138" r="1" fill="#000"/>
+              <polygon points="95,144 105,144 100,148" fill="#FF9600"/>
+              <!-- 底部 tab -->
+              <rect x="0" y="252" width="132" height="34" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+              <text x="20" y="270" fill="#58CC02" font-size="6" font-weight="700" text-anchor="middle" font-family="system-ui">学习</text>
+              <text x="44" y="270" fill="#888" font-size="6" text-anchor="middle" font-family="system-ui">联系</text>
+              <text x="68" y="270" fill="#888" font-size="6" text-anchor="middle" font-family="system-ui">排行</text>
+              <text x="92" y="270" fill="#888" font-size="6" text-anchor="middle" font-family="system-ui">任务</text>
+              <text x="114" y="270" fill="#888" font-size="6" text-anchor="middle" font-family="system-ui">我的</text>
+            </svg>
+          </div>
+          <div class="caption">Example<span class="pname">Duolingo · 学习首页</span></div>
+        </div>
+      </div>
+
+      <!-- AIPL · 天猫 -->
+      <div class="model">
+        <div class="body">
+          <div class="tag"><span>AIPL</span><span class="n">— 用户资产分层</span></div>
+          <h3>从认知,到忠诚</h3>
+          <div class="formula">Awareness · Interest · Purchase · Loyalty</div>
+          <dl class="meta">
+            <dt>核心</dt><dd>把用户从"认知人群"逐步经营为"购买人群"与"忠诚人群"。</dd>
+            <dt>场景</dt><dd>电商、品牌经营、会员体系、广告投放。</dd>
+            <dt>例子</dt><dd>看过商品 → 收藏加购 → 购买 → 88VIP / 复购运营。</dd>
+          </dl>
+        </div>
+        <div class="shot">
+          <div class="device" aria-label="天猫 商品详情">
+            <svg viewBox="0 0 132 286" xmlns="http://www.w3.org/2000/svg">
+              <rect width="132" height="286" fill="#fff"/>
+              <text x="10" y="14" fill="#222" font-size="7" font-family="system-ui">9:41</text>
+              <!-- 商品主图 -->
+              <rect x="0" y="22" width="132" height="100" fill="#FFEBE3"/>
+              <rect x="40" y="40" width="52" height="68" rx="4" fill="#fff"/>
+              <rect x="46" y="52" width="40" height="44" rx="2" fill="#F3CCAE"/>
+              <rect x="50" y="80" width="32" height="6" fill="#D89A6B"/>
+              <!-- 价格 -->
+              <text x="8" y="138" fill="#FF0036" font-size="9" font-weight="700" font-family="system-ui">¥</text>
+              <text x="14" y="142" fill="#FF0036" font-size="14" font-weight="800" font-family="system-ui">299</text>
+              <text x="42" y="142" fill="#999" font-size="6" font-family="system-ui" text-decoration="line-through">¥499</text>
+              <rect x="68" y="132" width="28" height="11" rx="2" fill="#FF0036"/>
+              <text x="82" y="140" fill="#fff" font-size="5.5" font-weight="700" text-anchor="middle" font-family="system-ui">88VIP 9.5折</text>
+              <!-- 标题 -->
+              <text x="8" y="156" fill="#222" font-size="6.5" font-weight="700" font-family="system-ui">【品牌旗舰】保湿精华</text>
+              <text x="8" y="166" fill="#222" font-size="6.5" font-weight="700" font-family="system-ui">30ml 限时礼盒装</text>
+              <!-- 标签 -->
+              <rect x="8" y="174" width="22" height="11" rx="2" fill="#FFEBE3"/>
+              <text x="19" y="182" fill="#FF0036" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">天猫</text>
+              <rect x="32" y="174" width="22" height="11" rx="2" fill="#FFEBE3"/>
+              <text x="43" y="182" fill="#FF0036" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">官方旗舰</text>
+              <rect x="56" y="174" width="28" height="11" rx="2" fill="#FFF1E0"/>
+              <text x="70" y="182" fill="#C45A1A" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">7天无忧退</text>
+              <!-- 评价 -->
+              <line x1="8" y1="194" x2="124" y2="194" stroke="#eee"/>
+              <text x="8" y="205" fill="#222" font-size="6" font-weight="700" font-family="system-ui">商品评价 (2.8w)</text>
+              <text x="100" y="205" fill="#999" font-size="5.5" font-family="system-ui">好评率 98%</text>
+              <text x="8" y="217" fill="#666" font-size="5" font-family="system-ui">"补水效果不错,会回购"</text>
+              <!-- 底部 CTA -->
+              <rect x="0" y="252" width="132" height="34" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+              <text x="12" y="270" fill="#666" font-size="5.5" text-anchor="middle" font-family="system-ui">店铺</text>
+              <text x="30" y="270" fill="#666" font-size="5.5" text-anchor="middle" font-family="system-ui">客服</text>
+              <text x="48" y="270" fill="#666" font-size="5.5" text-anchor="middle" font-family="system-ui">收藏</text>
+              <rect x="62" y="258" width="28" height="22" rx="11" fill="#FF9000"/>
+              <text x="76" y="272" fill="#fff" font-size="6.5" font-weight="700" text-anchor="middle" font-family="system-ui">加购物车</text>
+              <rect x="92" y="258" width="34" height="22" rx="11" fill="#FF0036"/>
+              <text x="109" y="272" fill="#fff" font-size="6.5" font-weight="700" text-anchor="middle" font-family="system-ui">立即购买</text>
+            </svg>
+          </div>
+          <div class="caption">Example<span class="pname">天猫 · 商品详情</span></div>
+        </div>
+      </div>
+
+      <!-- CDJ · 懂车帝 -->
+      <div class="model">
+        <div class="body">
+          <div class="tag"><span>CDJ</span><span class="n">— 消费者决策旅程</span></div>
+          <h3>不是漏斗,是循环。</h3>
+          <div class="formula">初始考虑 · 主动评估 · 购买 · 体验 · 忠诚 / 推荐</div>
+          <dl class="meta">
+            <dt>核心</dt><dd>用户决策不是一条线性漏斗,而是一个 <strong>持续评估、反复比较、不断反馈</strong> 的旅程。</dd>
+            <dt>场景</dt><dd>房产、汽车、保险、教育、装修、医疗等 <strong>高客单、低频、复杂决策</strong> 行业。</dd>
+            <dt>例子</dt><dd>有购车意向 → 对比品牌车型价格口碑 → 到店试驾 → 购买 → 使用后推荐或复购。</dd>
+          </dl>
+        </div>
+        <div class="shot">
+          <div class="device" aria-label="懂车帝 车型对比页">
+            <svg viewBox="0 0 132 286" xmlns="http://www.w3.org/2000/svg">
+              <rect width="132" height="286" fill="#fff"/>
+              <text x="10" y="14" fill="#222" font-size="7" font-family="system-ui">9:41</text>
+              <!-- 顶栏 -->
+              <rect x="0" y="22" width="132" height="22" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+              <text x="66" y="36" fill="#222" font-size="7" font-weight="700" text-anchor="middle" font-family="system-ui">车型 PK · 3 款对比</text>
+              <text x="120" y="36" fill="#FF6600" font-size="6" font-weight="600" text-anchor="end" font-family="system-ui">+ 添加</text>
+              <!-- 车头三列 -->
+              <rect x="6" y="50" width="38" height="34" rx="4" fill="#F4F4F4"/>
+              <rect x="10" y="62" width="30" height="16" rx="2" fill="#3B82C4"/>
+              <rect x="47" y="50" width="38" height="34" rx="4" fill="#F4F4F4"/>
+              <rect x="51" y="62" width="30" height="16" rx="2" fill="#2A2A2A"/>
+              <rect x="88" y="50" width="38" height="34" rx="4" fill="#F4F4F4"/>
+              <rect x="92" y="62" width="30" height="16" rx="2" fill="#C44A2A"/>
+              <text x="25" y="93" fill="#222" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">Model 3</text>
+              <text x="66" y="93" fill="#222" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">汉 EV</text>
+              <text x="107" y="93" fill="#222" font-size="5" font-weight="700" text-anchor="middle" font-family="system-ui">小鹏 P7</text>
+              <!-- 价格行 -->
+              <line x1="6" y1="100" x2="126" y2="100" stroke="#eee"/>
+              <text x="6" y="112" fill="#888" font-size="5" font-family="system-ui">指导价</text>
+              <text x="25" y="120" fill="#FF6600" font-size="7" font-weight="700" text-anchor="middle" font-family="system-ui">23.19w</text>
+              <text x="66" y="120" fill="#FF6600" font-size="7" font-weight="700" text-anchor="middle" font-family="system-ui">21.98w</text>
+              <text x="107" y="120" fill="#FF6600" font-size="7" font-weight="700" text-anchor="middle" font-family="system-ui">22.99w</text>
+              <!-- 续航 -->
+              <line x1="6" y1="126" x2="126" y2="126" stroke="#eee"/>
+              <text x="6" y="138" fill="#888" font-size="5" font-family="system-ui">续航 (km)</text>
+              <text x="25" y="146" fill="#222" font-size="6" font-weight="600" text-anchor="middle" font-family="system-ui">556</text>
+              <text x="66" y="146" fill="#1A9F4B" font-size="6" font-weight="700" text-anchor="middle" font-family="system-ui">715</text>
+              <text x="107" y="146" fill="#222" font-size="6" font-weight="600" text-anchor="middle" font-family="system-ui">670</text>
+              <!-- 加速 -->
+              <line x1="6" y1="152" x2="126" y2="152" stroke="#eee"/>
+              <text x="6" y="164" fill="#888" font-size="5" font-family="system-ui">0-100 (s)</text>
+              <text x="25" y="172" fill="#1A9F4B" font-size="6" font-weight="700" text-anchor="middle" font-family="system-ui">6.1</text>
+              <text x="66" y="172" fill="#222" font-size="6" font-weight="600" text-anchor="middle" font-family="system-ui">7.9</text>
+              <text x="107" y="172" fill="#222" font-size="6" font-weight="600" text-anchor="middle" font-family="system-ui">6.4</text>
+              <!-- 口碑 -->
+              <line x1="6" y1="178" x2="126" y2="178" stroke="#eee"/>
+              <text x="6" y="190" fill="#888" font-size="5" font-family="system-ui">口碑评分</text>
+              <text x="25" y="200" fill="#FF6600" font-size="6.5" font-weight="700" text-anchor="middle" font-family="system-ui">4.6 ★</text>
+              <text x="66" y="200" fill="#FF6600" font-size="6.5" font-weight="700" text-anchor="middle" font-family="system-ui">4.7 ★</text>
+              <text x="107" y="200" fill="#FF6600" font-size="6.5" font-weight="700" text-anchor="middle" font-family="system-ui">4.5 ★</text>
+              <!-- 试驾 CTA -->
+              <line x1="6" y1="206" x2="126" y2="206" stroke="#eee"/>
+              <rect x="8" y="216" width="36" height="20" rx="10" fill="#FFEEDD" stroke="#FF6600" stroke-width="0.6"/>
+              <text x="26" y="229" fill="#FF6600" font-size="5.5" font-weight="700" text-anchor="middle" font-family="system-ui">预约试驾</text>
+              <rect x="48" y="216" width="36" height="20" rx="10" fill="#FFEEDD" stroke="#FF6600" stroke-width="0.6"/>
+              <text x="66" y="229" fill="#FF6600" font-size="5.5" font-weight="700" text-anchor="middle" font-family="system-ui">预约试驾</text>
+              <rect x="88" y="216" width="36" height="20" rx="10" fill="#FFEEDD" stroke="#FF6600" stroke-width="0.6"/>
+              <text x="106" y="229" fill="#FF6600" font-size="5.5" font-weight="700" text-anchor="middle" font-family="system-ui">预约试驾</text>
+              <!-- 底部 CTA -->
+              <rect x="0" y="252" width="132" height="34" fill="#FF6600"/>
+              <text x="66" y="272" fill="#fff" font-size="8" font-weight="700" text-anchor="middle" font-family="system-ui">询底价 · 立省 2.3w</text>
+            </svg>
+          </div>
+          <div class="caption">Example<span class="pname">懂车帝 · 车型对比</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="pullquote reveal" style="margin-top:64px">
+      五个模型里,与贝壳的业务形态最贴近的,是 <em>CDJ</em>。<br>
+      但贝壳的特殊之处在于 —— 它把"决策旅程"与"线下服务履约"结合在了一起,<br>
+      且交易的本质是 <em>非标品、低频、决策成本极高</em>。
+    </p>
+  </div>
+</section>
+
+<!-- ── Chapter II ─────────────────────────── -->
+<section class="chapter" id="ch-2">
+  <div class="container">
+    <div class="chapter-head">
+      <div class="num reveal">CHAPTER II  ·  02 / 05</div>
+      <div>
+        <h2 class="reveal">信息服务时代:<br>房源货架 <em>+</em> 经纪人承接</h2>
+        <p class="sub reveal">在 <strong style="color:var(--ink)">卖方市场</strong> 的逻辑下,贝壳的转化模型本质是"信息展示 + 流量撮合" —— 平台做信息货架,经纪人作为 <strong style="color:var(--ink)">信息中介</strong> 承接线索。</p>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal">核心链路 —— 六个阶段</h3>
+
+    <div class="funnel reveal">
+      <div class="funnel-row head">
+        <div>阶段</div><div>用户行为</div><div>平台任务</div><div>核心指标</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">房源信息货架</div>
+        <div class="behavior">用户进入 App,看到房源、小区、板块信息</div>
+        <div class="task">提供丰富、真实、可筛选的房源供给</div>
+        <div class="kpi">曝光 · 点击 · 浏览深度</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">用户浏览</div>
+        <div class="behavior">搜索、筛选、查看房源详情与小区详情</div>
+        <div class="task">提升信息匹配效率,帮用户找到感兴趣的房源</div>
+        <div class="kpi">CTR · 详情页转化 · 收藏</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">咨询建联</div>
+        <div class="behavior">IM 咨询、电话、留资、联系经纪人</div>
+        <div class="task">把线上兴趣转化为服务机会</div>
+        <div class="kpi">商机率 · IM 发起率 · 电话率</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">带看</div>
+        <div class="behavior">约看、实地看房、复看</div>
+        <div class="task">通过线下服务验证用户兴趣</div>
+        <div class="kpi">带看率 · 带看量 · 复看率</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">斡旋</div>
+        <div class="behavior">价格沟通、意向确认、交易条件协商</div>
+        <div class="task">促成买卖双方达成一致</div>
+        <div class="kpi">意向金 · 斡旋成功率</div>
+      </div>
+      <div class="funnel-row">
+        <div class="stage">成交</div>
+        <div class="behavior">签约、贷款、过户</div>
+        <div class="task">完成交易闭环</div>
+        <div class="kpi">成交率 · GTV · 佣金收入</div>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:96px">转化本质 —— 平台主要解决三个问题</h3>
+    <p class="p reveal">这一阶段的核心假设是:用户已经有相对明确的找房需求,平台要帮助用户更高效地找到真实房源,并连接到经纪人服务。</p>
+
+    <div class="threeq reveal">
+      <!-- Q1 · 房源列表 -->
+      <div class="q">
+        <div class="qn">Q.01</div>
+        <h4>有什么房?</h4>
+        <p>通过真房源、楼盘字典、小区信息、价格信息,把供给充分展示出来。</p>
+      </div>
+
+      <!-- Q2 · 房源详情 -->
+      <div class="q">
+        <div class="qn">Q.02</div>
+        <h4>哪些房值得看?</h4>
+        <p>通过搜索、筛选、推荐、排序,提高房源与用户的匹配效率。</p>
+      </div>
+
+      <!-- Q3 · 经纪人 IM -->
+      <div class="q">
+        <div class="qn">Q.03</div>
+        <h4>如何转成线下服务?</h4>
+        <p>通过咨询、电话、约看、经纪人承接,把线上浏览转化为线下带看,再到最终成交。</p>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:80px">优势 与 局限</h3>
+    <div class="prosc reveal">
+      <div class="col">
+        <div class="lab">Advantages · 优势</div>
+        <p>信息服务时代解决了房产交易中非常关键的问题 —— <strong style="color:var(--ink)">真房源、信息透明、供给丰富、线上找房效率提升</strong>。</p>
+        <p>用户可以先在线上完成大量信息筛选,再把较高意向的房源交给经纪人承接。</p>
+      </div>
+      <div class="col">
+        <div class="lab">Limits · 局限</div>
+        <h4>一,信息越多,用户不一定越会判断。</h4>
+        <p>用户看到很多房源,仍然不知道哪个更适合自己。</p>
+        <h4>二,用户需求并不总是明确。</h4>
+        <p>很多用户一开始只是模糊表达:"通勤方便、预算合适、适合家庭"。</p>
+        <h4>三,房产决策不是单点匹配,而是综合判断。</h4>
+        <p>预算、通勤、学校、板块、小区、楼龄、户型、价格、流动性、未来规划 —— 多维权衡。</p>
+        <h4>四,线上到线下之间存在判断断层。</h4>
+        <p>用户看了很多房却形成不了清晰方案,经纪人服务容易从"顾问"退化为"带看承接"。</p>
+      </div>
+    </div>
+
+    <p class="pullquote reveal" style="margin-top:56px">
+      当市场从 <em>卖方</em> 转向 <em>买方</em>,<br>
+      用户的诉求也从"<em>买到房</em>"转向"<em>买对房</em>" ——<br>
+      信息越多,焦虑越深;货架做得再丰富,也填不上判断的缺口。
+    </p>
+
+    <div class="couplet reveal">
+      <div class="when">过去</div>
+      <div class="line">货架做得再丰富,用户站在货架前依然 <em>迷茫</em>。</div>
+      <div class="when now">未来</div>
+      <div class="line">把货架后退一步,先帮用户回答 ——"<em>我要的是什么?</em>"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Chapter III ─────────────────────────── -->
+<section class="chapter" id="ch-3">
+  <div class="container">
+    <div class="chapter-head">
+      <div class="num reveal">CHAPTER III  ·  03 / 05</div>
+      <div>
+        <h2 class="reveal">判断力服务时代:<br>从找到房,到 <em>做判断</em></h2>
+        <p class="sub reveal">从 <strong style="color:var(--ink)">卖方市场</strong> 到 <strong style="color:var(--ink)">买方市场</strong>,服务范式必须重构。平台升级为 <strong style="color:var(--ink)">决策支持的综合服务平台</strong>,经纪人转型为 <strong style="color:var(--ink)">资产咨询师</strong> —— 转化由"线索漏斗"升级为 <strong style="color:var(--ink)">决策旅程</strong>,落地的支点,是重新定义"管理转化的中间件"。</p>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal">用户问题的迁移</h3>
+    <p class="p reveal">市场下行期,北京二手房成交量从 21 万套(2021)降至 18 万套(2024–2025),成交总价再降 15%。业主诉求从"卖出去"转为"合理定价",客户诉求从"买到房"转为 <em>"防范亏损的买对房"</em>。</p>
+    <p class="p reveal">用户问的问题,也从 ——</p>
+    <p class="p reveal" style="padding-left:20px;border-left:2px solid var(--line-strong)">
+      <strong style="color:var(--ink-muted)">过去:</strong>"有哪些房?"<br>
+      <strong style="color:var(--ink)">现在:</strong>"我该买哪里?这套值不值?预算要不要上浮?通勤、学校、品质怎么取舍?"
+    </p>
+    <p class="p reveal">转化目标随之从 <em>信息匹配效率</em>,升级为 <em>决策形成效率</em>。而要支撑决策,必须先定义一个能 <em>承载、衡量、流转决策</em> 的新中间件。</p>
+
+    <h3 class="h3 reveal" style="margin-top:64px">新的中间件 ——《购房计划书》</h3>
+    <p class="p reveal">过去把"委托"和"带看"作为中间件,为什么无效?<br>因为它们只是 <em>动作</em>,而不是用户内心决策的 <em>里程碑</em>。当用户不知道"我适不适合买、值不值得买、买哪个对",任何带看都是"开盲盒" —— 效率与确定性都无从衡量。</p>
+    <p class="p reveal">判断力服务时代的 C 端核心中间件,是一份由 OSA(AI 管家)在线生成的结构化《购房计划书》。它的精神不是"AI 替你决定",而是 —— <em>"用与你相似的同类人的真实决策,辅助你做判断"</em>。</p>
+    <p class="p reveal"><strong style="color:var(--ink)">准客的定义</strong>: 客户需求 <em>"3 + X"要素</em> 明确,且 <em>自主确认</em>。"3" 是结构化核心要素,"X" 是个性化补充约束 —— 计划书完成度本质上是这套要素的收敛进度。</p>
+
+    <div class="mw reveal">
+      <div class="mw-text">
+        <div class="mw-vs">
+          <div class="col was">
+            <div class="tag">Before · 旧中间件</div>
+            <h4>"委托" / "带看"</h4>
+            <p style="margin-top:12px">本质是用户的一个 <strong style="color:var(--ink)">动作</strong>。</p>
+            <p style="margin-top:8px">动作可以统计 —— 多少次咨询、多少次带看;但动作不衡量 <strong style="color:var(--ink)">决策深度</strong>,无法回答"用户是否真的准备好成交"。</p>
+          </div>
+          <div class="col now">
+            <div class="tag">After · 新中间件</div>
+            <div class="head">
+              <div class="avatar">
+                <img src="专属管家.png" alt="AI 管家"/>
+              </div>
+              <h4>《购房计划书》<span class="sub">OSA(AI 管家)生成</span></h4>
+            </div>
+            <p>本质是 <strong style="color:var(--ink)">里程碑</strong>。先把用户归类到"<em>同类人</em>",再用同类人的真实决策路径,陪用户走过判断过程。</p>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="deliver reveal">
+        <div class="d-head">
+          <div class="d-eyebrow">Deliverable · 交付物</div>
+          <h4 class="d-title">用户拿到的不是房源,<br>而是 <em>一次完整决策</em></h4>
+          <p class="d-sub">"我已接收到你的需求 —— 接下来我将基于此找到和你相似的人,深入分析他们的决策路径,推荐他们看过后认可的房源,供你做出更理智的决策。"</p>
+        </div>
+
+        <div class="acts">
+          <div class="act">
+            <div class="n">I.</div>
+            <div class="body">
+              <h5>一份 <em>自己确认的需求</em></h5>
+              <div class="answer">"我到底要的是什么?"</div>
+              <p class="items">"3+X" 要素 —— <strong>预算 / 区域 / 居室</strong> 必有,叠加 <strong>家庭 · 教育 · 通勤</strong> 等个性化约束,由用户自主确认。</p>
+            </div>
+          </div>
+
+          <div class="act">
+            <div class="n">II.</div>
+            <div class="body">
+              <h5>一张 <em>画像</em></h5>
+              <div class="answer">"我被归类到什么样的人?"</div>
+              <p class="items">城市 · 大类 · 小类 <strong>三层归类</strong>,辅以共性标签与同类人占比。</p>
+            </div>
+          </div>
+
+          <div class="act">
+            <div class="n">III.</div>
+            <div class="body">
+              <h5>一组 <em>同类人证据</em></h5>
+              <div class="answer">"像我这样的人,是怎么买的?"</div>
+              <p class="items">他们 <strong>买在哪</strong> · 大家 <strong>正在看哪</strong> · 主流 <strong>决策路径</strong> · 同类人 <strong>共识</strong> 与 <strong>AI 洞察</strong>。</p>
+            </div>
+          </div>
+
+          <div class="act">
+            <div class="n">IV.</div>
+            <div class="body">
+              <h5>一份 <em>行动指引</em></h5>
+              <div class="answer">"今天起,我该看什么、做什么?"</div>
+              <p class="items">每天 <strong>10 套好房</strong> · 下一步建议 · 派单给经纪人 · 订阅持续推送。</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="d-foot">交付的不是更多 <em>房源信息</em>,而是一份 <em>可带走的决策档案</em>。</p>
+      </aside>
+    </div>
+
+    <p class="pullquote reveal" style="margin-top:80px">
+      过去贝壳关注的是 <em>有多少咨询量、带看量</em>;<br>
+      未来贝壳关注的是 <em>沉淀了多少准客</em> —— <br>
+      即围绕用户需求,生成了多少份《购房计划书》。
+    </p>
+
+    <h3 class="h3 reveal" style="margin-top:80px">准客沉淀 —— CB 协同,AI 全周期辅助</h3>
+    <p class="p reveal">准客不是被"筛"出来的,是被 <em>"沉淀"</em> 出来的。把线下散落的"探需—对比—判断"动作,搬到线上一条 <strong style="color:var(--ink)">可执行、可沉淀</strong> 的规则里 —— 让泛流量层层收敛成准客。</p>
+
+    <div class="dt reveal">
+      <div class="track">
+        <div class="t-head">
+          <span class="tag">Track C · 准客塑造</span>
+        </div>
+        <h4 style="font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.3;margin:0 0 10px;color:var(--ink);letter-spacing:-0.01em">围绕 <em>用户需求</em> 塑造准客</h4>
+        <p class="t-sub">真正的准客 <strong style="color:var(--ink)">必须由用户自己确认</strong> —— 把"需求表达"沉到用户已在做的事情里(浏览、咨询、搜房、约看…),让表达像呼吸一样自然发生。</p>
+        <div class="ai-row">
+          <span class="ai-lab">AI 引擎</span>
+          <span class="ai-d">OSA 做 <em>画像识别 + 预填充</em>,把"填表"压成"确认"。</span>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="t-head">
+          <span class="tag">Track B · 服务者协同</span>
+        </div>
+        <h4 style="font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.3;margin:0 0 10px;color:var(--ink);letter-spacing:-0.01em">嵌入 <em>日常作业</em> 协同生产</h4>
+        <p class="t-sub">把"邀请确认需求"嵌入经纪人日常作业(录客、约带看、带看、录带看…),<strong style="color:var(--ink)">不增加新负担,也不挤占成交动作</strong>。</p>
+        <div class="ai-row">
+          <span class="ai-lab">AI 引擎</span>
+          <span class="ai-d">AI 做 <em>画像预测 + 转发模板</em>,经纪人一键发出,客户一键确认。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="common-act reveal">
+      <div class="lab">共同动作</div>
+      <div>AI 预填充 → 用户自主确认 <em>"3+X"</em> 要素 → 实时生成《购房计划书》→ 沉淀为可调度的准客资产。</div>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:96px">服务模式升级 —— OSA + 专家团,全周期辅助决策</h3>
+    <p class="p reveal">单点的"咨询应答"撑不起复杂决策。判断力服务时代,平台采用 <em>"全科 + 专科"</em> 双轨服务模式 —— 一位长期陪伴的 AI 管家,链接一支按需介入的专家团,把碎片化咨询升级为全周期的专业陪伴。</p>
+
+    <div class="osa-hero reveal">
+      <div class="hero-intro">
+        <div class="role">Service Architecture</div>
+        <h4>一位 <em>AI 管家</em>,一支 <em>专家团</em></h4>
+      </div>
+
+      <div class="osa-cast">
+        <div class="anchor">
+          <div class="av"><img src="专属管家.png" alt="专属管家"/></div>
+          <div class="name">AI 管家 · OSA</div>
+          <div class="tag">全科 · 长期陪伴</div>
+          <div class="desc">7×24 即时响应</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="specs">
+          <div class="specs-label">专家团 · 专科按需介入</div>
+          <div class="spec">
+            <div class="av"><img src="教育专家.png" alt="教育专家"/></div>
+            <div class="name">教育专家</div>
+          </div>
+          <div class="spec">
+            <div class="av"><img src="法务专家.png" alt="法务专家"/></div>
+            <div class="name">法务专家</div>
+          </div>
+          <div class="spec">
+            <div class="av"><img src="金融专家.png" alt="金融专家"/></div>
+            <div class="name">金融专家</div>
+          </div>
+          <div class="spec">
+            <div class="av"><img src="交易专家.png" alt="交易专家"/></div>
+            <div class="name">交易专家</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="osa-meta">
+        <div class="col">
+          <div class="lab">全科 · OSA 职能</div>
+          <p>作为用户的 <em>长期 AI 管家</em>,陪伴需求探索、找房、评估全过程;辅助生成《购房计划书》、精准识别准客;遇到复杂决策节点时,把用户"分诊"给专科专家。</p>
+        </div>
+        <div class="col">
+          <div class="lab">专科 · 专家团职能</div>
+          <p>承接 OSA 分诊来的复杂咨询(学区、贷款、税费、置换…),把原本签约后才介入的专业服务 <strong>前置到早期决策阶段</strong> —— 消除决策顾虑,而非事后补救。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cap-strip reveal">
+      <div class="cap-h">OSA 典型交互场景<span class="sub">覆盖 8 类高频触点</span></div>
+      <div class="cap-list">
+        <span class="cap">需求探索</span>
+        <span class="cap">长期陪伴</span>
+        <span class="cap">市场信息</span>
+        <span class="cap">长期盯盘</span>
+        <span class="cap">推荐服务者</span>
+        <span class="cap">看房管理</span>
+        <span class="cap">专家咨询</span>
+        <span class="cap">服务追踪</span>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:96px">按需分配经纪人 —— "准客对能人"机制</h3>
+    <p class="p reveal">过去的派单逻辑是"流量随机分配",经纪人接的是意向、画像都不明的商机;现在的派单逻辑是 <strong style="color:var(--ink)">"按需分配"</strong> —— 基于 OSA 沉淀的准客画像,把高意向商机精准派给具备相应能力的能人。</p>
+
+    <div class="match reveal">
+      <div class="pipe">
+        <div class="node">
+          <div class="step">输入</div>
+          <div class="name">准客 + 购房计划书</div>
+          <div class="d">用户确认的"3+X"需求 + 同类人决策档案 + 偏好画像。</div>
+        </div>
+        <div class="arr">→</div>
+        <div class="node">
+          <div class="name">算法精准派单</div>
+          <div class="step">匹配</div>
+          <div class="d">基于需求画像匹配能人 —— 懂学区 / 懂置换 / 懂金融…能力标签按需对位。</div>
+        </div>
+        <div class="arr">→</div>
+        <div class="node">
+          <div class="step">交付</div>
+          <div class="name">高效能经纪人(能人)</div>
+          <div class="d">接单时同步收到《结构化需求报告》,带看前已知客户画像,直接进入高质量服务。</div>
+        </div>
+      </div>
+
+      <div class="deliv">
+        <span class="lab">同一档案 · 两种视角</span>
+        <div>对用户呈现为 <em>《购房计划书》</em>,对经纪人呈现为 <em>《结构化需求报告》</em> —— 让 BC 双方在同一份决策档案上对齐,而非各自摸索。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Chapter IV ─────────────────────────── -->
+<section class="chapter" id="ch-4">
+  <div class="container">
+    <div class="chapter-head">
+      <div class="num reveal">CHAPTER IV  ·  04 / 05</div>
+      <div>
+        <h2 class="reveal">关键变化:<br>四个维度的 <em>范式跃迁</em></h2>
+        <p class="sub reveal">把"判断力服务"拆解成四组可被对比的变化:<strong style="color:var(--ink)">平台与角色</strong> · <strong style="color:var(--ink)">北极星指标</strong> · <strong style="color:var(--ink)">服务颗粒度</strong> · <strong style="color:var(--ink)">转化本质</strong>。</p>
+      </div>
+    </div>
+
+    <div class="shifts reveal">
+      <div class="shift">
+        <div class="n">01</div>
+        <div>
+          <h4>平台与角色</h4>
+        </div>
+        <div class="from">
+          <span class="tag">From · 信息展示与撮合</span>
+          平台展示房源、做信息撮合;经纪人作为 <strong>"信息中介"</strong>,主要提供房源与价格信息。
+        </div>
+        <div class="to">
+          <span class="tag">To · 决策支持综合服务</span>
+          平台升级为 <strong>"决策支持的综合服务平台"</strong>;经纪人转型为 <strong>"资产咨询师"</strong>,提供资产配置中立建议,帮客户降低决策焦虑。
+        </div>
+      </div>
+
+      <div class="shift">
+        <div class="n">02</div>
+        <div>
+          <h4>北极星指标</h4>
+        </div>
+        <div class="from">
+          <span class="tag">From · 咨询量 / 带看量</span>
+          关注有多少人来咨询、有多少人去带看 —— 用户行为的"动作量"。
+        </div>
+        <div class="to">
+          <span class="tag">To · 准客规模</span>
+          关注 <strong>沉淀了多少准客</strong> —— 客户需求"3 + X"要素明确且自主确认。即:围绕用户需求生成了多少份《购房计划书》。规模 = 真正完成判断的用户数。
+        </div>
+      </div>
+
+      <div class="shift">
+        <div class="n">03</div>
+        <div>
+          <h4>服务颗粒度</h4>
+        </div>
+        <div class="from">
+          <span class="tag">From · 单房源匹配</span>
+          以"这套房你可能喜欢"为单位,服务围绕 <strong>单套房源</strong> 展开 —— 提供的是 <strong>匹配</strong>。
+        </div>
+        <div class="to">
+          <span class="tag">To · 结构化决策档案</span>
+          以《购房计划书》为单位,服务围绕 <strong>一次完整决策</strong> 展开 —— 提供的是 <strong>判断</strong>。颗粒度从"单套"升级为"一次决策的全貌"。
+        </div>
+      </div>
+
+      <div class="shift">
+        <div class="n">04</div>
+        <div>
+          <h4>转化本质</h4>
+        </div>
+        <div class="from">
+          <span class="tag">From · 信息匹配效率</span>
+          "把对的房子,推给可能感兴趣的人"—— 衡量的是 <strong>信息流通</strong> 的快慢。
+        </div>
+        <div class="to">
+          <span class="tag">To · 决策形成效率</span>
+          "让用户更快、更确定地形成购房判断"—— 衡量的是 <strong>决策形成</strong> 的密度。
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:96px">指标体系 —— 北极星 + 两层过程指标</h3>
+    <p class="p reveal">"北极星"回答 <strong style="color:var(--ink)">"我们要做大什么"</strong>(规模 = 准客);两层过程指标回答 <strong style="color:var(--ink)">"准客是怎么被造出来、又怎么被消化掉"</strong>(过程 = 转化率)。两层共同支撑同一个北极星。</p>
+
+    <div class="kpi-dual reveal">
+      <div class="layer">
+        <h4 class="layer-h"><em>L1</em>探需环节 · 决定准客 <strong style="color:var(--ink)">质量</strong></h4>
+        <p class="layer-sub">"需求是否被理解、是否收敛、是否回流" —— 决定每一份计划书的成色。</p>
+        <ul>
+          <li>
+            <span class="n">i.</span>
+            <span><span class="name">需求明确转化率</span><span class="hint">条件筛选后房源压缩到 X 套</span></span>
+          </li>
+          <li>
+            <span class="n">ii.</span>
+            <span><span class="name">"3+X"要素推荐准确率</span><span class="hint">双周转带看率 X%</span></span>
+          </li>
+          <li>
+            <span class="n">iii.</span>
+            <span><span class="name">需求闭环收集率</span><span class="hint">线下反馈回流计划书的覆盖度</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="layer">
+        <h4 class="layer-h"><em>L2</em>转化环节 · 决定准客 <strong style="color:var(--ink)">效率</strong></h4>
+        <p class="layer-sub">"准客是否一路被服务到位" —— 决定计划书能否变成成交。</p>
+        <ul>
+          <li>
+            <span class="n">i.</span>
+            <span><span class="name">潜客转商机率</span><span class="hint">浏览 → 表达需求</span></span>
+          </li>
+          <li>
+            <span class="n">ii.</span>
+            <span><span class="name">商机转带看率</span><span class="hint">计划书 → 派单 → 实地</span></span>
+          </li>
+          <li>
+            <span class="n">iii.</span>
+            <span><span class="name">带看转出价率</span><span class="hint">看 → 出价的临门一脚</span></span>
+          </li>
+          <li>
+            <span class="n">iv.</span>
+            <span><span class="name">出价转成交率</span><span class="hint">谈判斡旋 → 签约</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="p reveal" style="margin-top:24px;color:var(--ink-muted);font-size:14px;line-height:1.7">
+      <strong style="color:var(--ink)">注:</strong> L2 转化率指标(商机转带看、带看转出价等)在新旧两个时代都需要观测,但口径不同 —— 信息服务时代用全量商机,判断力服务时代用 <em>准客</em> 作为分母,两者数量级与含义完全不同。
+    </p>
+  </div>
+</section>
+
+<!-- ── Chapter V ──────────────────────────── -->
+<section class="chapter" id="ch-5">
+  <div class="container">
+    <div class="chapter-head">
+      <div class="num reveal">CHAPTER V  ·  05 / 05</div>
+      <div>
+        <h2 class="reveal">最终表达 ——<br>一句话 <em>方法论</em></h2>
+        <p class="sub reveal">一张对照矩阵,看完两代范式的差异;一句方法论,带走整个分享的核心。</p>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal">速查矩阵 —— 一张表看完范式跃迁</h3>
+
+    <div class="final-table reveal">
+      <div class="row head">
+        <div class="dim">维度</div>
+        <div class="a">信息服务时代</div>
+        <div class="b">判断力服务时代</div>
+      </div>
+      <div class="row">
+        <div class="dim">平台定位</div>
+        <div class="a">信息展示与撮合平台</div>
+        <div class="b">决策支持综合服务平台</div>
+      </div>
+      <div class="row">
+        <div class="dim">经纪人角色</div>
+        <div class="a">信息中介</div>
+        <div class="b">资产咨询师</div>
+      </div>
+      <div class="row">
+        <div class="dim">核心中间件</div>
+        <div class="a">委托 / 带看(动作)</div>
+        <div class="b">《购房计划书》(里程碑)</div>
+      </div>
+      <div class="row">
+        <div class="dim">关键转化</div>
+        <div class="a">浏览 → 咨询 → 带看</div>
+        <div class="b">生成计划书 → 准客对能人 → 准客成交</div>
+      </div>
+      <div class="row">
+        <div class="dim">北极星指标</div>
+        <div class="a">咨询量 · 带看量</div>
+        <div class="b">准客规模(计划书生成量)</div>
+      </div>
+      <div class="row">
+        <div class="dim">转化本质</div>
+        <div class="a">信息匹配效率</div>
+        <div class="b">决策形成效率</div>
+      </div>
+    </div>
+
+    <div class="manifesto reveal" style="margin-top:64px">
+      <div class="inner">
+        <div class="eyebrow on-deep"><span class="ix"></span><span>The Methodology</span></div>
+        <h3>贝壳的转化模型,<br>正在从 <em>"信息服务驱动的线索漏斗"</em>,<br>升级为 <em>"判断力服务驱动的决策旅程"</em>。<br><br>新中间件 = <em>《购房计划书》</em>。<br>新北极星 = <em>准客规模</em>。</h3>
+      </div>
+    </div>
+
+    <div class="closing reveal">
+      <div class="label">In Closing · 一句话收束</div>
+      <div class="stanza">
+        <div class="when">过去</div>
+        <p>管理转化的中间件是 <em>咨询与带看</em> —— 衡量的是动作。</p>
+      </div>
+      <div class="stanza">
+        <div class="when">未来</div>
+        <p>管理转化的中间件是 <em>《购房计划书》</em> —— 衡量的是 <em>准客规模</em>。</p>
+      </div>
+      <p class="punchline">从动作的统计,到 <em>决策的沉淀</em>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────── -->
+<footer>
+  <div class="container f-inner">
+    <div class="brand-f">贝壳 · 用户转化方法论分享</div>
+    <div>Prepared for DR Leadership · 2026.06.29</div>
+  </div>
+</footer>
+
+<script>
+  const topbar = document.getElementById('topbar');
+  const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 8);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
