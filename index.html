@@ -248,6 +248,11 @@
     padding: var(--section-y) 0;
     border-top: 1px solid var(--line);
   }
+  /* 删除 chapter-head 后由 PART 分隔条接管,Ch 自身不再加顶部线/大段 padding */
+  section.chapter.no-head {
+    padding: clamp(36px, 5vh, 56px) 0 var(--section-y);
+    border-top: 0;
+  }
   .chapter-head {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -1740,6 +1745,267 @@
     line-height: 1.65;
   }
 
+  /* PART divider — 同时作为章节头部 */
+  .part-div {
+    padding: clamp(96px, 14vh, 160px) 0 clamp(56px, 8vh, 96px);
+    border-top: 1px solid var(--ink);
+    background: var(--bg);
+  }
+  .part-div .container {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .part-div .container { grid-template-columns: 1fr; gap: 20px; }
+  }
+  .part-div .pnum {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1.2;
+    padding-top: 14px;
+  }
+  .part-div .pnum em {
+    display: block;
+    font-style: normal;
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-top: 6px;
+  }
+  .part-div h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin: 0;
+    max-width: 22ch;
+  }
+  .part-div h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .part-div .pdesc {
+    margin-top: 22px;
+    font-size: 17px;
+    line-height: 1.72;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .part-div .pdesc strong { color: var(--ink); font-weight: 600; }
+
+  /* PART III 内部大节标题 — 比章节内 H3 更显眼 */
+  .chapter > .container > h3.h3-major {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+    color: var(--ink);
+    margin: clamp(72px, 10vh, 120px) 0 18px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-strong);
+    max-width: 26ch;
+  }
+  .chapter > .container > h3.h3-major:first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+  .chapter > .container > h3.h3-major em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .chapter > .container > p.h3-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 36px;
+  }
+  .chapter > .container > p.h3-sub strong { color: var(--ink); font-weight: 600; }
+
+  /* loop (chapter IV · 闭环) */
+  .loop-intro {
+    margin-top: 8px;
+    padding: 28px 32px;
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elev);
+    border-radius: 0 4px 4px 0;
+  }
+  .loop-intro p {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+    font-weight: 500;
+  }
+  .loop-intro em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* dual rails recap (Track C · Track B) */
+  .rails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 8px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  @media (max-width: 860px) { .rails { grid-template-columns: 1fr; } }
+  .rails .rail {
+    padding: 28px 32px;
+    border-right: 1px solid var(--line);
+  }
+  .rails .rail:last-child { border-right: 0; }
+  @media (max-width: 860px) {
+    .rails .rail { border-right: 0; border-bottom: 1px solid var(--line); }
+    .rails .rail:last-child { border-bottom: 0; }
+  }
+  .rails .rail .lab {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600; margin-bottom: 12px;
+  }
+  .rails .rail.c .lab { color: var(--accent); }
+  .rails .rail.b .lab { color: #2A6F5B; }
+  .rails .rail h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.32;
+    margin: 0 0 10px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .rails .rail h4 em { font-style: italic; color: var(--accent); font-weight: 600; }
+  .rails .rail.b h4 em { color: #2A6F5B; }
+  .rails .rail p {
+    font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 10px;
+  }
+  .rails .rail .mech {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .rails .rail .mech b { color: var(--ink); font-weight: 700; }
+
+  /* engine spec card (准客调度引擎) */
+  .engine {
+    margin-top: 28px;
+    padding: 32px clamp(28px, 4vw, 44px);
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    background: linear-gradient(180deg, #F2EBE0 0%, var(--bg-elev) 100%);
+  }
+  .engine .eb {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 14px;
+  }
+  .engine .eb::before {
+    content: ""; display: inline-block; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%;
+  }
+  .engine h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.3;
+    margin: 0 0 14px;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+  }
+  .engine h4 em { font-style: italic; color: var(--accent); font-weight: 600; }
+  .engine .desc {
+    font-size: 16px; line-height: 1.7; color: var(--ink-soft);
+    max-width: 62ch; margin: 0;
+  }
+  .engine .desc strong { color: var(--ink); font-weight: 700; }
+  .engine .desc em { font-style: italic; color: var(--ink); font-weight: 500; }
+  .engine .e-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 760px) { .engine .e-grid { grid-template-columns: 1fr; } }
+  .engine .e-item {
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .engine .e-item .k {
+    font-family: var(--sans);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 8px;
+  }
+  .engine .e-item .v {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .engine .e-item .d {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* closed-loop diagram */
+  .loop-diagram {
+    margin-top: 32px;
+    padding: 36px clamp(20px, 3vw, 36px) 32px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .loop-diagram .ld-head {
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .loop-diagram .ld-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--ink);
+    margin: 0 0 24px;
+    letter-spacing: -0.01em;
+  }
+  .loop-diagram .ld-title em { font-style: italic; color: var(--accent); }
+  .loop-diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .loop-diagram .ld-foot {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+  .loop-diagram .ld-foot strong { color: var(--ink); font-style: normal; font-weight: 600; }
+
   /* shifts (chapter IV) */
   .shifts {
     display: grid;
@@ -2069,11 +2335,9 @@
   <div class="container topbar-inner">
     <div class="brand">贝壳 <span class="dot">·</span> 用户转化方法论分享</div>
     <nav class="topnav">
-      <a href="#ch-1">模型</a>
-      <a href="#ch-2">旧范式</a>
-      <a href="#ch-3">新范式</a>
-      <a href="#ch-4">范式跃迁</a>
-      <a href="#ch-5">总结</a>
+      <a href="#part-1">P.I · 互联网模型</a>
+      <a href="#part-2">P.II · 我们的模型</a>
+      <a href="#part-3">P.III · 方法论演进</a>
     </nav>
   </div>
 </header>
@@ -2102,8 +2366,8 @@
     <div class="meta-row reveal">
       <div class="meta-item"><div class="k">Format</div><div class="v">Product Methodology</div></div>
       <div class="meta-item"><div class="k">Audience</div><div class="v">DR Leadership</div></div>
-      <div class="meta-item"><div class="k">Chapters</div><div class="v">Five Sections</div></div>
-      <div class="meta-item"><div class="k">Duration</div><div class="v">≈ 10 min</div></div>
+      <div class="meta-item"><div class="k">Structure</div><div class="v">Three Acts</div></div>
+      <div class="meta-item"><div class="k">Duration</div><div class="v">≈ 12 min</div></div>
     </div>
   </div>
 </section>
@@ -2114,50 +2378,43 @@
     <div class="map-head">
       <div class="eyebrow reveal"><span class="ix"></span><span>Contents</span></div>
       <div>
-        <h2 class="reveal">本次分享将沿着五个章节展开,<br>从模型回顾,到贝壳两代转化范式的对比,再到方法论的最终收束。</h2>
+        <h2 class="reveal">本次分享分为三个主要部分 ——<br>从 <em>互联网的转化模型</em>,到 <em>我们的转化模型</em>,再到 <em>新市场环境下方法论的演进</em>。</h2>
       </div>
     </div>
 
     <nav class="toc reveal">
-      <a href="#ch-1">
-        <span class="num">I.</span>
-        <span class="title">五种常见的互联网转化模型 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">AIDA · AISAS · AARRR · AIPL · CDJ</span></span>
+      <a href="#part-1">
+        <span class="num">P.I</span>
+        <span class="title">互联网常见的转化模型 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">AIDA · AISAS · AARRR · AIPL · CDJ</span></span>
         <span class="arr">→</span>
       </a>
-      <a href="#ch-2">
-        <span class="num">II.</span>
-        <span class="title">信息服务时代的贝壳 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">房源货架 + 经纪人承接</span></span>
+      <a href="#part-2">
+        <span class="num">P.II</span>
+        <span class="title">我们的转化模型 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">信息服务时代:房源货架 + 经纪人承接</span></span>
         <span class="arr">→</span>
       </a>
-      <a href="#ch-3">
-        <span class="num">III.</span>
-        <span class="title">判断力服务时代的贝壳 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">从找到房,到做判断</span></span>
-        <span class="arr">→</span>
-      </a>
-      <a href="#ch-4">
-        <span class="num">IV.</span>
-        <span class="title">关键变化 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">四个维度的范式跃迁</span></span>
-        <span class="arr">→</span>
-      </a>
-      <a href="#ch-5">
-        <span class="num">V.</span>
-        <span class="title">最终表达 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">一句话方法论</span></span>
+      <a href="#part-3">
+        <span class="num">P.III</span>
+        <span class="title">新市场环境下,我们方法论的演进 ——<br><span style="color:var(--ink-muted);font-style:italic;font-size:15px;font-weight:400">判断力服务 · 组织闭环 · 范式跃迁 · 一句方法论</span></span>
         <span class="arr">→</span>
       </a>
     </nav>
   </div>
 </section>
 
-<!-- ── Chapter I ──────────────────────────── -->
-<section class="chapter" id="ch-1">
+<!-- ── PART I · 互联网常见的转化模型 ───────── -->
+<section class="part-div" id="part-1">
   <div class="container">
-    <div class="chapter-head">
-      <div class="num reveal">CHAPTER I  ·  01 / 05</div>
-      <div>
-        <h2 class="reveal">五种常见的<br>互联网转化模型</h2>
-        <p class="sub reveal">在进入贝壳的讨论之前,先快速回顾互联网行业最常被引用的五个转化模型,以及它们各自最适合的场景。</p>
-      </div>
+    <div class="pnum reveal">Part <em>I</em></div>
+    <div>
+      <h2 class="reveal">五种常见的<br>互联网 <em>转化模型</em></h2>
+      <p class="pdesc reveal">在进入正题之前,先和大家一起快速回顾互联网行业最常被引用的五个转化模型,以及它们各自最适合的场景 —— 这是后面我们对照"<strong>贝壳的转化模型</strong>"时的共同语言。</p>
     </div>
+  </div>
+</section>
+
+<section class="chapter no-head" id="ch-1">
+  <div class="container">
 
     <div class="models reveal">
       <!-- AIDA · 抖音 -->
@@ -2480,24 +2737,28 @@
       </div>
     </div>
 
-    <p class="pullquote reveal" style="margin-top:64px">
-      五个模型里,与贝壳的业务形态最贴近的,是 <em>CDJ</em>。<br>
-      但贝壳的特殊之处在于 —— 它把"决策旅程"与"线下服务履约"结合在了一起,<br>
-      且交易的本质是 <em>非标品、低频、决策成本极高</em>。
+    <p class="pullquote reveal" style="margin-top:64px;max-width:62ch">
+      五个模型里,与我们业务形态最贴近的,是 <em>CDJ</em>。但我们的特殊之处在于 ——
+      <span style="display:block;margin-top:14px;font-size:.78em;color:var(--ink-soft);font-style:normal">① "决策旅程"与"<em style="font-style:italic;color:var(--accent)">线下服务履约</em>"密不可分</span>
+      <span style="display:block;margin-top:4px;font-size:.78em;color:var(--ink-soft);font-style:normal">② 交易本身是 <em style="font-style:italic;color:var(--accent)">非标品、低频</em></span>
+      <span style="display:block;margin-top:4px;font-size:.78em;color:var(--ink-soft);font-style:normal">③ <em style="font-style:italic;color:var(--accent)">决策成本极高</em></span>
     </p>
   </div>
 </section>
 
-<!-- ── Chapter II ─────────────────────────── -->
-<section class="chapter" id="ch-2">
+<!-- ── PART II · 贝壳的转化模型(信息服务时代) ── -->
+<section class="part-div" id="part-2">
   <div class="container">
-    <div class="chapter-head">
-      <div class="num reveal">CHAPTER II  ·  02 / 05</div>
-      <div>
-        <h2 class="reveal">信息服务时代:<br>房源货架 <em>+</em> 经纪人承接</h2>
-        <p class="sub reveal">在 <strong style="color:var(--ink)">卖方市场</strong> 的逻辑下,贝壳的转化模型本质是"信息展示 + 流量撮合" —— 平台做信息货架,经纪人作为 <strong style="color:var(--ink)">信息中介</strong> 承接线索。</p>
-      </div>
+    <div class="pnum reveal">Part <em>II</em></div>
+    <div>
+      <h2 class="reveal">我们的转化模型 ——<br>房源货架 <em>+</em> 经纪人承接</h2>
+      <p class="pdesc reveal">我们的模型既有互联网漏斗特征,也有线下服务履约特征。在<strong>信息服务时代</strong>,它本质上是 <strong>"信息展示 + 流量撮合"</strong> —— 平台做信息货架,经纪人作为 <strong>信息中介</strong> 承接线索。这一节看它怎么运转、解决了什么、又遇到了什么瓶颈。</p>
     </div>
+  </div>
+</section>
+
+<section class="chapter no-head" id="ch-2">
+  <div class="container">
 
     <h3 class="h3 reveal">核心链路 —— 六个阶段</h3>
 
@@ -2543,48 +2804,17 @@
       </div>
     </div>
 
-    <h3 class="h3 reveal" style="margin-top:96px">转化本质 —— 平台主要解决三个问题</h3>
-    <p class="p reveal">这一阶段的核心假设是:用户已经有相对明确的找房需求,平台要帮助用户更高效地找到真实房源,并连接到经纪人服务。</p>
-
-    <div class="threeq reveal">
-      <!-- Q1 · 房源列表 -->
-      <div class="q">
-        <div class="qn">Q.01</div>
-        <h4>有什么房?</h4>
-        <p>通过真房源、楼盘字典、小区信息、价格信息,把供给充分展示出来。</p>
-      </div>
-
-      <!-- Q2 · 房源详情 -->
-      <div class="q">
-        <div class="qn">Q.02</div>
-        <h4>哪些房值得看?</h4>
-        <p>通过搜索、筛选、推荐、排序,提高房源与用户的匹配效率。</p>
-      </div>
-
-      <!-- Q3 · 经纪人 IM -->
-      <div class="q">
-        <div class="qn">Q.03</div>
-        <h4>如何转成线下服务?</h4>
-        <p>通过咨询、电话、约看、经纪人承接,把线上浏览转化为线下带看,再到最终成交。</p>
-      </div>
-    </div>
-
     <h3 class="h3 reveal" style="margin-top:80px">优势 与 局限</h3>
     <div class="prosc reveal">
       <div class="col">
         <div class="lab">Advantages · 优势</div>
-        <p>信息服务时代解决了房产交易中非常关键的问题 —— <strong style="color:var(--ink)">真房源、信息透明、供给丰富、线上找房效率提升</strong>。</p>
-        <p>用户可以先在线上完成大量信息筛选,再把较高意向的房源交给经纪人承接。</p>
+        <p>解决了房产交易最关键的几件事 —— <strong style="color:var(--ink)">真房源、信息透明、供给丰富、线上找房效率提升</strong>。用户先在线上完成大量信息筛选,再把高意向房源交给经纪人承接。</p>
       </div>
       <div class="col">
         <div class="lab">Limits · 局限</div>
-        <h4>一,信息越多,用户不一定越会判断。</h4>
-        <p>用户看到很多房源,仍然不知道哪个更适合自己。</p>
-        <h4>二,用户需求并不总是明确。</h4>
-        <p>很多用户一开始只是模糊表达:"通勤方便、预算合适、适合家庭"。</p>
-        <h4>三,房产决策不是单点匹配,而是综合判断。</h4>
-        <p>预算、通勤、学校、板块、小区、楼龄、户型、价格、流动性、未来规划 —— 多维权衡。</p>
-        <h4>四,线上到线下之间存在判断断层。</h4>
+        <h4>信息越多,用户不一定越会判断。</h4>
+        <p>用户看到很多房源,仍然不知道哪个更适合自己;需求本身又常常模糊。</p>
+        <h4>线上到线下,存在判断断层。</h4>
         <p>用户看了很多房却形成不了清晰方案,经纪人服务容易从"顾问"退化为"带看承接"。</p>
       </div>
     </div>
@@ -2604,16 +2834,22 @@
   </div>
 </section>
 
-<!-- ── Chapter III ─────────────────────────── -->
-<section class="chapter" id="ch-3">
+<!-- ── PART III · 新市场环境下方法论的演进 ──── -->
+<section class="part-div" id="part-3">
   <div class="container">
-    <div class="chapter-head">
-      <div class="num reveal">CHAPTER III  ·  03 / 05</div>
-      <div>
-        <h2 class="reveal">判断力服务时代:<br>从找到房,到 <em>做判断</em></h2>
-        <p class="sub reveal">从 <strong style="color:var(--ink)">卖方市场</strong> 到 <strong style="color:var(--ink)">买方市场</strong>,服务范式必须重构。平台升级为 <strong style="color:var(--ink)">决策支持的综合服务平台</strong>,经纪人转型为 <strong style="color:var(--ink)">资产咨询师</strong> —— 转化由"线索漏斗"升级为 <strong style="color:var(--ink)">决策旅程</strong>,落地的支点,是重新定义"管理转化的中间件"。</p>
-      </div>
+    <div class="pnum reveal">Part <em>III</em></div>
+    <div>
+      <h2 class="reveal">新市场环境下,<br>方法论的 <em>演进</em></h2>
+      <p class="pdesc reveal">从 <strong>卖方市场</strong> 到 <strong>买方市场</strong>,信息服务时代的瓶颈无法靠"做更厚的货架"解决。这一幕讲四件事 —— 平台升级为 <strong>判断力服务</strong>、组织进入 <strong>BC 双向调度的闭环</strong>、四个维度的 <strong>范式跃迁</strong>,最后收束为<strong>一句方法论</strong>。</p>
     </div>
+  </div>
+</section>
+
+<!-- ── 判断力服务时代 ────────────────────────── -->
+<section class="chapter no-head" id="ch-3">
+  <div class="container">
+    <h3 class="h3-major reveal">判断力服务时代 ——<br>从找到房,到 <em>做判断</em></h3>
+    <p class="h3-sub reveal">服务范式必须重构。平台升级为 <strong>决策支持的综合服务平台</strong>,经纪人转型为 <strong>资产咨询师</strong> —— 转化由"线索漏斗"升级为 <strong>决策旅程</strong>,落地的支点,是重新定义"管理转化的中间件"。</p>
 
     <h3 class="h3 reveal">用户问题的迁移</h3>
     <p class="p reveal">市场下行期,北京二手房成交量从 21 万套(2021)降至 18 万套(2024–2025),成交总价再降 15%。业主诉求从"卖出去"转为"合理定价",客户诉求从"买到房"转为 <em>"防范亏损的买对房"</em>。</p>
@@ -2702,8 +2938,8 @@
     </div>
 
     <p class="pullquote reveal" style="margin-top:80px">
-      过去贝壳关注的是 <em>有多少咨询量、带看量</em>;<br>
-      未来贝壳关注的是 <em>沉淀了多少准客</em> —— <br>
+      过去我们关注的是 <em>有多少咨询量、带看量</em>;<br>
+      未来我们关注的是 <em>沉淀了多少准客</em> —— <br>
       即围绕用户需求,生成了多少份《购房计划书》。
     </p>
 
@@ -2736,13 +2972,8 @@
       </div>
     </div>
 
-    <div class="common-act reveal">
-      <div class="lab">共同动作</div>
-      <div>AI 预填充 → 用户自主确认 <em>"3+X"</em> 要素 → 实时生成《购房计划书》→ 沉淀为可调度的准客资产。</div>
-    </div>
-
-    <h3 class="h3 reveal" style="margin-top:96px">服务模式升级 —— OSA + 专家团,全周期辅助决策</h3>
-    <p class="p reveal">单点的"咨询应答"撑不起复杂决策。判断力服务时代,平台采用 <em>"全科 + 专科"</em> 双轨服务模式 —— 一位长期陪伴的 AI 管家,链接一支按需介入的专家团,把碎片化咨询升级为全周期的专业陪伴。</p>
+    <h3 class="h3 reveal" style="margin-top:80px">准客的生产端 —— OSA + 专家团,全周期陪伴沉淀准客</h3>
+    <p class="p reveal">准客不是凭空出现的 —— 它是被 <strong style="color:var(--ink)">OSA + 专家团</strong> 在全周期陪伴里 <em>一点点沉淀</em> 出来的。"全科 + 专科"双轨服务,既是判断力服务的产品形态,也是 <strong style="color:var(--ink)">准客资产的供给侧</strong> —— 后续 BC 双向调度,消耗的都是这里源源不断生产出来的准客。</p>
 
     <div class="osa-hero reveal">
       <div class="hero-intro">
@@ -2793,63 +3024,151 @@
       </div>
     </div>
 
-    <div class="cap-strip reveal">
-      <div class="cap-h">OSA 典型交互场景<span class="sub">覆盖 8 类高频触点</span></div>
-      <div class="cap-list">
-        <span class="cap">需求探索</span>
-        <span class="cap">长期陪伴</span>
-        <span class="cap">市场信息</span>
-        <span class="cap">长期盯盘</span>
-        <span class="cap">推荐服务者</span>
-        <span class="cap">看房管理</span>
-        <span class="cap">专家咨询</span>
-        <span class="cap">服务追踪</span>
-      </div>
-    </div>
-
-    <h3 class="h3 reveal" style="margin-top:96px">按需分配经纪人 —— "准客对能人"机制</h3>
-    <p class="p reveal">过去的派单逻辑是"流量随机分配",经纪人接的是意向、画像都不明的商机;现在的派单逻辑是 <strong style="color:var(--ink)">"按需分配"</strong> —— 基于 OSA 沉淀的准客画像,把高意向商机精准派给具备相应能力的能人。</p>
-
-    <div class="match reveal">
-      <div class="pipe">
-        <div class="node">
-          <div class="step">输入</div>
-          <div class="name">准客 + 购房计划书</div>
-          <div class="d">用户确认的"3+X"需求 + 同类人决策档案 + 偏好画像。</div>
-        </div>
-        <div class="arr">→</div>
-        <div class="node">
-          <div class="name">算法精准派单</div>
-          <div class="step">匹配</div>
-          <div class="d">基于需求画像匹配能人 —— 懂学区 / 懂置换 / 懂金融…能力标签按需对位。</div>
-        </div>
-        <div class="arr">→</div>
-        <div class="node">
-          <div class="step">交付</div>
-          <div class="name">高效能经纪人(能人)</div>
-          <div class="d">接单时同步收到《结构化需求报告》,带看前已知客户画像,直接进入高质量服务。</div>
-        </div>
-      </div>
-
-      <div class="deliv">
-        <span class="lab">同一档案 · 两种视角</span>
-        <div>对用户呈现为 <em>《购房计划书》</em>,对经纪人呈现为 <em>《结构化需求报告》</em> —— 让 BC 双方在同一份决策档案上对齐,而非各自摸索。</div>
-      </div>
-    </div>
+    <p class="p reveal" style="color:var(--ink-muted);margin-top:32px">准客一旦被沉淀,就成为可调度的双边资产 —— <strong style="color:var(--ink)">下一章会展开它在 BC 两侧的调度,以及"准客对能人"的具体机制</strong>。</p>
 
   </div>
 </section>
 
-<!-- ── Chapter IV ─────────────────────────── -->
-<section class="chapter" id="ch-4">
+<!-- ── 组织闭环 · 准客的双向调度 ─────────────── -->
+<section class="chapter no-head" id="ch-4">
   <div class="container">
-    <div class="chapter-head">
-      <div class="num reveal">CHAPTER IV  ·  04 / 05</div>
-      <div>
-        <h2 class="reveal">关键变化:<br>四个维度的 <em>范式跃迁</em></h2>
-        <p class="sub reveal">把"判断力服务"拆解成四组可被对比的变化:<strong style="color:var(--ink)">平台与角色</strong> · <strong style="color:var(--ink)">北极星指标</strong> · <strong style="color:var(--ink)">服务颗粒度</strong> · <strong style="color:var(--ink)">转化本质</strong>。</p>
+    <h3 class="h3-major reveal">组织闭环 ——<br>准客的 <em>双向调度</em></h3>
+    <p class="h3-sub reveal">判断力服务时代的真正闭环,不在 C 端"沉淀准客"那里收尾 —— <strong>准客一旦被沉淀,就成为平台可调度的双边资产</strong>,既向 C 端派给能人,也向 B 端调度去化。</p>
+
+    <div class="loop-intro reveal">
+      <p>过去我们只在 C 端做转化 —— <em>线索进来,带看出去,成交结束</em>。<br>未来我们要做的是 —— <em>把准客作为资产,在 BC 两侧反复调度,让每一份准客既服务客户决策,也服务业主去化</em>。</p>
+    </div>
+
+    <h3 class="h3 reveal" style="margin-top:64px">两条调度轨道 —— 同一份准客资产,两种使用方式</h3>
+    <p class="p reveal">基于前面沉淀下来的准客与《购房计划书》,平台运行两条并行的调度轨道 —— C 侧把准客派给最合适的能人,B 侧把准客流量调度给最需要去化的房源。两侧消耗的是同一份资产,产生的是同一笔成交。</p>
+
+    <div class="rails reveal">
+      <div class="rail c">
+        <div class="lab">Track · C 侧调度</div>
+        <h4>准客对 <em>能人</em><span style="color:var(--ink-muted);font-weight:400;font-size:14px;letter-spacing:.12em;margin-left:8px">为客户找对的人</span></h4>
+        <p>过去派单是"流量随机分配"。基于准客画像与《购房计划书》,把高意向商机精准派给具备相应能力的经纪人 —— 懂学区 / 懂置换 / 懂金融…按需对位。<strong style="color:var(--ink)">同一份档案,对用户是《购房计划书》,对经纪人是《结构化需求报告》</strong>,BC 双方在同一份决策档案上对齐。</p>
+        <div class="mech"><b>调度对象:</b>经纪人能力位 · <b>调度目标:</b>带看与成交效率</div>
+      </div>
+      <div class="rail b">
+        <div class="lab">Track · B 侧调度</div>
+        <h4>准客调度 <em>引擎</em><span style="color:var(--ink-muted);font-weight:400;font-size:14px;letter-spacing:.12em;margin-left:8px">为业主找对的人来看</span></h4>
+        <p>面向业主去化场景(诚意卖、主理人、城市重点房源…),把和该房源最匹配的准客流量,精准调度到房源详情页前 —— 让"房源扶持"第一次有目标、有效率、可归因。</p>
+        <div class="mech"><b>调度对象:</b>准客流量 · <b>调度目标:</b>核访达成与去化</div>
       </div>
     </div>
+
+    <div class="engine reveal">
+      <div class="eb">B 侧调度的载体</div>
+      <h4>准客调度引擎 —— 把房源扶持从 <em>"货架曝光"</em> 升级为 <em>"目标驱动的投放闭环"</em></h4>
+      <p class="desc">面向<strong>业主去化</strong>的内部投放系统:需求方(城市经营 / 业主 / 主理人)<strong>只需提供目标房源</strong>,引擎从已沉淀的准客画像与流量中,自动测算可达目标、匹配最相关的准客、在合适场景中投放,达成即停 / 低效即止损。它<strong>不是把房源推给陌生人</strong>,而是把 <em>准客资产</em> 作为平台内部最稀缺、最有效的"流量",定向调度给最需要去化的房源。</p>
+      <div class="e-grid">
+        <div class="e-item">
+          <div class="k">投前 · Match</div>
+          <div class="v">准客 × 房源精准匹配</div>
+          <div class="d">基于《购房计划书》要素,从准客池里圈定与目标房源最契合的人群。</div>
+        </div>
+        <div class="e-item">
+          <div class="k">投中 · Deliver</div>
+          <div class="v">目标驱动的自动投放</div>
+          <div class="d">以"核访"为优化目标(非堆曝光);多场景白盒规则、节奏可控、效率可观测。</div>
+        </div>
+        <div class="e-item">
+          <div class="k">投后 · Feedback</div>
+          <div class="v">结果回流准客资产</div>
+          <div class="d">达成 / 止损双向归因;投放过程产生的反馈,反哺画像与下一轮调度。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Closed-loop Diagram ── -->
+    <div class="loop-diagram reveal">
+      <div class="ld-head">The Closed Loop</div>
+      <div class="ld-title">从 <em>全周期服务</em>,到 <em>准客资产</em>,再到 <em>双向调度</em> —— 一张图看完闭环</div>
+
+      <svg viewBox="0 0 880 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="贝壳判断力服务时代的组织闭环图">
+        <defs>
+          <marker id="lp-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#7A1F2B"/>
+          </marker>
+          <marker id="lp-arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2A6F5B"/>
+          </marker>
+          <marker id="lp-arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0F1419"/>
+          </marker>
+        </defs>
+
+        <!-- 顶部:全周期服务输入 -->
+        <g>
+          <rect x="290" y="14" width="300" height="60" rx="4" fill="#FBFAF6" stroke="#0F1419" stroke-width="1.4"/>
+          <text x="440" y="36" text-anchor="middle" font-family="Source Serif 4, Noto Serif SC, serif" font-size="11" letter-spacing="2" fill="#6E7079" font-weight="600">STAGE 01 · 全周期服务</text>
+          <text x="440" y="58" text-anchor="middle" font-family="Source Serif 4, Noto Serif SC, serif" font-size="16" font-weight="600" fill="#0F1419">OSA(AI 管家) + 专家团 · 长期陪伴</text>
+        </g>
+
+        <!-- 箭头 顶部 → 资产池 -->
+        <line x1="440" y1="74" x2="440" y2="146" stroke="#0F1419" stroke-width="1.6" marker-end="url(#lp-arr-ink)"/>
+        <text x="450" y="115" font-family="Source Serif 4, serif" font-size="13" font-style="italic" fill="#3A3F47">沉淀</text>
+
+        <!-- 中部:准客资产池(核心) -->
+        <g>
+          <rect x="260" y="150" width="360" height="120" rx="6" fill="#0F1419" stroke="#0F1419"/>
+          <text x="440" y="178" text-anchor="middle" font-family="Source Serif 4, serif" font-size="11" letter-spacing="2.5" fill="#9A9890" font-weight="600">STAGE 02 · 平台核心资产</text>
+          <text x="440" y="210" text-anchor="middle" font-family="Source Serif 4, Noto Serif SC, serif" font-size="22" font-weight="600" fill="#EDEAE2">准客资产池</text>
+          <text x="440" y="234" text-anchor="middle" font-family="Inter, Noto Sans SC, sans-serif" font-size="13" fill="#9A9890">《购房计划书》× N · "3+X"要素 · 同类人画像</text>
+          <text x="440" y="254" text-anchor="middle" font-family="Source Serif 4, serif" font-size="13" font-style="italic" fill="#E8A88E">— 北极星指标 —</text>
+        </g>
+
+        <!-- 左下:C 侧调度 -->
+        <g>
+          <rect x="60" y="320" width="280" height="92" rx="4" fill="#FBFAF6" stroke="#7A1F2B" stroke-width="1.6"/>
+          <text x="200" y="345" text-anchor="middle" font-family="Source Serif 4, serif" font-size="11" letter-spacing="2" fill="#7A1F2B" font-weight="700">STAGE 03 · TRACK C</text>
+          <text x="200" y="370" text-anchor="middle" font-family="Source Serif 4, Noto Serif SC, serif" font-size="17" font-weight="600" fill="#0F1419">准客对能人</text>
+          <text x="200" y="392" text-anchor="middle" font-family="Inter, Noto Sans SC, sans-serif" font-size="12.5" fill="#3A3F47">把高意向准客派给</text>
+          <text x="200" y="408" text-anchor="middle" font-family="Inter, Noto Sans SC, sans-serif" font-size="12.5" fill="#3A3F47">具备能力的经纪人</text>
+        </g>
+
+        <!-- 右下:B 侧调度 -->
+        <g>
+          <rect x="540" y="320" width="280" height="92" rx="4" fill="#FBFAF6" stroke="#2A6F5B" stroke-width="1.6"/>
+          <text x="680" y="345" text-anchor="middle" font-family="Source Serif 4, serif" font-size="11" letter-spacing="2" fill="#2A6F5B" font-weight="700">STAGE 03 · TRACK B</text>
+          <text x="680" y="370" text-anchor="middle" font-family="Source Serif 4, Noto Serif SC, serif" font-size="17" font-weight="600" fill="#0F1419">准客调度引擎</text>
+          <text x="680" y="392" text-anchor="middle" font-family="Inter, Noto Sans SC, sans-serif" font-size="12.5" fill="#3A3F47">把匹配的准客流量</text>
+          <text x="680" y="408" text-anchor="middle" font-family="Inter, Noto Sans SC, sans-serif" font-size="12.5" fill="#3A3F47">调度给业主去化房源</text>
+        </g>
+
+        <!-- 箭头:资产池 → C 侧 -->
+        <path d="M 320 270 Q 260 295 220 318" fill="none" stroke="#7A1F2B" stroke-width="1.6" marker-end="url(#lp-arr)"/>
+        <text x="218" y="298" text-anchor="end" font-family="Source Serif 4, serif" font-size="12.5" font-style="italic" fill="#7A1F2B">服务客户决策</text>
+
+        <!-- 箭头:资产池 → B 侧 -->
+        <path d="M 560 270 Q 620 295 660 318" fill="none" stroke="#2A6F5B" stroke-width="1.6" marker-end="url(#lp-arr-g)"/>
+        <text x="662" y="298" text-anchor="start" font-family="Source Serif 4, serif" font-size="12.5" font-style="italic" fill="#2A6F5B">服务业主去化</text>
+
+        <!-- 反馈回流:C 侧 → 资产池(虚线) -->
+        <path d="M 200 320 Q 130 240 256 200" fill="none" stroke="#7A1F2B" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#lp-arr)" opacity="0.7"/>
+        <text x="78" y="262" font-family="Source Serif 4, serif" font-size="11.5" font-style="italic" fill="#7A1F2B" opacity="0.85">带看/成交反馈</text>
+
+        <!-- 反馈回流:B 侧 → 资产池(虚线) -->
+        <path d="M 680 320 Q 750 240 624 200" fill="none" stroke="#2A6F5B" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#lp-arr-g)" opacity="0.7"/>
+        <text x="802" y="262" text-anchor="end" font-family="Source Serif 4, serif" font-size="11.5" font-style="italic" fill="#2A6F5B" opacity="0.85">核访/去化反馈</text>
+      </svg>
+
+      <div class="ld-foot">实线 = 调度方向　·　虚线 = 反馈回流　·　<strong>同一份准客资产,在 BC 两侧反复使用,反馈持续滚动</strong></div>
+    </div>
+
+    <p class="pullquote reveal" style="margin-top:80px">
+      到这里,"判断力服务"才完成了组织级闭环 —— <br>
+      不只是 C 端的转化升级,而是 <em>BC 双边协同的服务闭环</em>。
+    </p>
+  </div>
+</section>
+
+<!-- ── Chapter V ──────────────────────────── -->
+<!-- ── 关键变化 · 四个维度的范式跃迁 ─────────── -->
+<section class="chapter no-head" id="ch-5">
+  <div class="container">
+    <h3 class="h3-major reveal">关键变化 ——<br>四个维度的 <em>范式跃迁</em></h3>
+    <p class="h3-sub reveal">把"判断力服务"拆解成四组可被对比的变化:<strong>平台与角色</strong> · <strong>北极星指标</strong> · <strong>服务颗粒度</strong> · <strong>转化本质</strong>。</p>
 
     <div class="shifts reveal">
       <div class="shift">
@@ -2878,7 +3197,7 @@
         </div>
         <div class="to">
           <span class="tag">To · 准客规模</span>
-          关注 <strong>沉淀了多少准客</strong> —— 客户需求"3 + X"要素明确且自主确认。即:围绕用户需求生成了多少份《购房计划书》。规模 = 真正完成判断的用户数。
+          关注 <strong>沉淀了多少准客</strong> —— 客户需求"3 + X"要素明确且自主确认。即:围绕用户需求生成了多少份《购房计划书》。规模 = 真正完成判断的用户数。<br><span style="color:var(--ink-muted);font-size:13.5px;font-style:italic;display:inline-block;margin-top:6px">准客之所以是北极星 —— 它同时是 <strong style="color:var(--ink);font-style:normal">C 端服务质量的产出</strong>,也是 <strong style="color:var(--ink);font-style:normal">B 端去化能力的输入</strong>。</span>
         </div>
       </div>
 
@@ -2913,69 +3232,14 @@
       </div>
     </div>
 
-    <h3 class="h3 reveal" style="margin-top:96px">指标体系 —— 北极星 + 两层过程指标</h3>
-    <p class="p reveal">"北极星"回答 <strong style="color:var(--ink)">"我们要做大什么"</strong>(规模 = 准客);两层过程指标回答 <strong style="color:var(--ink)">"准客是怎么被造出来、又怎么被消化掉"</strong>(过程 = 转化率)。两层共同支撑同一个北极星。</p>
-
-    <div class="kpi-dual reveal">
-      <div class="layer">
-        <h4 class="layer-h"><em>L1</em>探需环节 · 决定准客 <strong style="color:var(--ink)">质量</strong></h4>
-        <p class="layer-sub">"需求是否被理解、是否收敛、是否回流" —— 决定每一份计划书的成色。</p>
-        <ul>
-          <li>
-            <span class="n">i.</span>
-            <span><span class="name">需求明确转化率</span><span class="hint">条件筛选后房源压缩到 X 套</span></span>
-          </li>
-          <li>
-            <span class="n">ii.</span>
-            <span><span class="name">"3+X"要素推荐准确率</span><span class="hint">双周转带看率 X%</span></span>
-          </li>
-          <li>
-            <span class="n">iii.</span>
-            <span><span class="name">需求闭环收集率</span><span class="hint">线下反馈回流计划书的覆盖度</span></span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="layer">
-        <h4 class="layer-h"><em>L2</em>转化环节 · 决定准客 <strong style="color:var(--ink)">效率</strong></h4>
-        <p class="layer-sub">"准客是否一路被服务到位" —— 决定计划书能否变成成交。</p>
-        <ul>
-          <li>
-            <span class="n">i.</span>
-            <span><span class="name">潜客转商机率</span><span class="hint">浏览 → 表达需求</span></span>
-          </li>
-          <li>
-            <span class="n">ii.</span>
-            <span><span class="name">商机转带看率</span><span class="hint">计划书 → 派单 → 实地</span></span>
-          </li>
-          <li>
-            <span class="n">iii.</span>
-            <span><span class="name">带看转出价率</span><span class="hint">看 → 出价的临门一脚</span></span>
-          </li>
-          <li>
-            <span class="n">iv.</span>
-            <span><span class="name">出价转成交率</span><span class="hint">谈判斡旋 → 签约</span></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="p reveal" style="margin-top:24px;color:var(--ink-muted);font-size:14px;line-height:1.7">
-      <strong style="color:var(--ink)">注:</strong> L2 转化率指标(商机转带看、带看转出价等)在新旧两个时代都需要观测,但口径不同 —— 信息服务时代用全量商机,判断力服务时代用 <em>准客</em> 作为分母,两者数量级与含义完全不同。
-    </p>
   </div>
 </section>
 
-<!-- ── Chapter V ──────────────────────────── -->
-<section class="chapter" id="ch-5">
+<!-- ── 最终表达 · 一句话方法论 ──────────────── -->
+<section class="chapter no-head" id="ch-6">
   <div class="container">
-    <div class="chapter-head">
-      <div class="num reveal">CHAPTER V  ·  05 / 05</div>
-      <div>
-        <h2 class="reveal">最终表达 ——<br>一句话 <em>方法论</em></h2>
-        <p class="sub reveal">一张对照矩阵,看完两代范式的差异;一句方法论,带走整个分享的核心。</p>
-      </div>
-    </div>
+    <h3 class="h3-major reveal">最终表达 ——<br>一句话 <em>方法论</em></h3>
+    <p class="h3-sub reveal">一张对照矩阵,看完两代范式的差异;一句方法论,带走整个分享的核心。</p>
 
     <h3 class="h3 reveal">速查矩阵 —— 一张表看完范式跃迁</h3>
 
@@ -3006,6 +3270,11 @@
         <div class="b">生成计划书 → 准客对能人 → 准客成交</div>
       </div>
       <div class="row">
+        <div class="dim">组织闭环</div>
+        <div class="a">单向漏斗 · 仅 C 端转化</div>
+        <div class="b">BC 双向调度 · C 侧准客对能人 + B 侧准客调度引擎</div>
+      </div>
+      <div class="row">
         <div class="dim">北极星指标</div>
         <div class="a">咨询量 · 带看量</div>
         <div class="b">准客规模(计划书生成量)</div>
@@ -3020,21 +3289,12 @@
     <div class="manifesto reveal" style="margin-top:64px">
       <div class="inner">
         <div class="eyebrow on-deep"><span class="ix"></span><span>The Methodology</span></div>
-        <h3>贝壳的转化模型,<br>正在从 <em>"信息服务驱动的线索漏斗"</em>,<br>升级为 <em>"判断力服务驱动的决策旅程"</em>。<br><br>新中间件 = <em>《购房计划书》</em>。<br>新北极星 = <em>准客规模</em>。</h3>
+        <h3>贝壳的转化模型,<br>正在从 <em>"信息服务驱动的线索漏斗"</em>,<br>升级为 <em>"判断力服务驱动的决策旅程"</em>。<br><br>新中间件 = <em>《购房计划书》</em>。<br>新北极星 = <em>准客规模</em>。<br>新闭环 = <em>BC 双向调度</em>。</h3>
       </div>
     </div>
 
     <div class="closing reveal">
-      <div class="label">In Closing · 一句话收束</div>
-      <div class="stanza">
-        <div class="when">过去</div>
-        <p>管理转化的中间件是 <em>咨询与带看</em> —— 衡量的是动作。</p>
-      </div>
-      <div class="stanza">
-        <div class="when">未来</div>
-        <p>管理转化的中间件是 <em>《购房计划书》</em> —— 衡量的是 <em>准客规模</em>。</p>
-      </div>
-      <p class="punchline">从动作的统计,到 <em>决策的沉淀</em>。</p>
+      <p class="punchline">从动作的统计,到 <em>决策的沉淀</em>;<br>从单向的漏斗,到 <em>双向的闭环</em>。</p>
     </div>
   </div>
 </section>
